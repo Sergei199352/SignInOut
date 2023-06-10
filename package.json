@@ -1,0 +1,25 @@
+{
+  "name": "signinout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sergei199352/SignInOut.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sergei199352/SignInOut/issues"
+  },
+  "homepage": "https://github.com/Sergei199352/SignInOut#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node": "^20.2.0",
+    "nodemon": "^2.0.22"
+  }
+}

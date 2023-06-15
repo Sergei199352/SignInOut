@@ -5,6 +5,17 @@ var app = express();
   
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
+app.use(express.static("public"))
+
+
+app.get("/", function(req, res){
+
+    res.send("this is working")
+
+
+})
   
 app.post("/arraysum", (req, res) => {
   

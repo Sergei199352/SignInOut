@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/1ef6b31f-fd4b-4b5e-8000-13fbbfee6b35/resourceGroups/SignINOutapp/providers/Microsoft.Web/sites/newRGUApp",
+    "appService.deploySubpath": "."
+}

@@ -12,7 +12,7 @@ app.use(express.static("public"))
 
 app.get("/", function(req, res){
 
-    res.send("this is working")
+    res.send("hello wordl")
 
 
 })
@@ -40,4 +40,4 @@ app.get("/", function(req, res){
 console.log("the server now running")
   
 // Server listening to PORT 3000
-app.listen(3000);
+app.listen(8080);

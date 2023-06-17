@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
   
 var app = express();
 var nfc = "";
-
+var ressql = "";
 app.set('view engine', 'ejs');
   
 app.use(bodyParser.json());
@@ -112,8 +112,8 @@ con.connect(function(err) {
     if (err) throw err;
     config.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, result) {
       if (err) throw err;
-      console.log(result);
-      res.redirect('pages/nfcsql',{result})
+      ressql = result;
+      
     });
   });
 

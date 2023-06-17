@@ -34,7 +34,8 @@ app.post("/arraysum", (req, res) => {
     console.log(sum);
   
     // Return json response
-    res.json({ result: sum });
+    res.send({ result: sum });
+    
 });
 
 console.log("the server now running")

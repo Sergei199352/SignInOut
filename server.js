@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 let NFCdata = '';
-let tarray = [];
+let trarray = [];
 
 
 app.get("/", function(req, res){
@@ -40,7 +40,7 @@ app.post("/arraysum", (req, res) => {
     
     // Return json response
     NFCdata = sum;
-    tarray = array;
+    trarray = array;
     eventEmitter.emit('data', NFCdata);
 
     res.redirect('/')

@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
   
 var app = express();
+var nfc = "";
 
 app.set('view engine', 'ejs');
   
@@ -28,6 +29,12 @@ let trarray = [];
 app.get("/", function(req, res){
 
     res.render("pages/index",{NFCdata, trarray})
+
+
+});
+app.get("/nread", function(req, res){
+
+    res.render("pages/nfc",{nfc})
 
 
 })
@@ -91,6 +98,11 @@ app.post("/arraysum", (req, res) => {
     res.json({ result: sum });
     
 });
+app.post("/read", (req, res) => {
+nfc = req.body.nfc
+
+
+})
 
 console.log("the server now running")
   //adding some new info

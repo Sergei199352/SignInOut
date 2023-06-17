@@ -106,7 +106,7 @@ app.post("/arraysum", (req, res) => {
 // post that recievews the nfc data
 app.post("/read", (req, res) => {
 var nfc1 = req.body.id
-nfc = nfc1
+nfc = nfc1//
 
 
    

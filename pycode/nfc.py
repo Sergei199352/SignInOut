@@ -13,6 +13,7 @@ try:
         nfc = {'id':id,
                 'text':text}
         res = requests.post('https://rguappsign.azurewebsites.net/nread', json=nfc)
+        print(res)
          
         sleep(5)
 except KeyboardInterrupt:

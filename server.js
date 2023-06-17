@@ -43,8 +43,7 @@ app.post("/arraysum", (req, res) => {
     trarray = array;
     eventEmitter.emit('data', NFCdata);
 
-    res.redirect('/')
-    
+    res.json({ result: sum });
     
 });
 

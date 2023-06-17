@@ -10,8 +10,8 @@ data = {'array':array}
 res = requests.post('https://rguappsign.azurewebsites.net/arraysum', json=data) 
   
 # Convert response data to json
-returned_data = res
+returned_data = res.json()
   
 print(returned_data)
-result = returned_data
+result = returned_data['result'] 
 print("Sum of Array from Node.js:", result)

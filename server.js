@@ -124,10 +124,10 @@ nfc = nfc1
         var request = new sql.Request();
 
 
-        request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, result) {
+        request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, recordset) {
             if (err) throw err;
-            ressql = result;
-            console.log(result)
+            ressql = recordset;
+            console.log(recordset)
             ;})
            
        

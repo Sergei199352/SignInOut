@@ -13,11 +13,11 @@
       <p><%= ressql.recordsets.Name %></p>
       <p><%= ressql.recordsets.Email %></p>
 
-      <% for (let i = 0; i < ressql.length; i++) { %>
-        <% for (let j = 0; j < ressql[i].length; j++) { %>
+      <% for (let i = 0; i < ressql.recordsets.length; i++) { %>
+        <% for (let j = 0; j < ressql.recordsets[i].length; j++) { %>
           <h2>Record <%= i + 1 %>, Object <%= j + 1 %></h2>
           <ul>
-            <% const recordset = ressql[i][j]; %>
+            <% const recordset = ressql.recordsets[i][j]; %>
             <% for (let key in recordset) { %>
               <li><%= key %>: <%= recordset[key] %></li>
             <% } %>

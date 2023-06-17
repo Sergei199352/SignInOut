@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-  
+var sql = require("mssql");
 var app = express();
 var nfc = "";
 var ressql = "";
@@ -46,7 +46,7 @@ app.get("/nread", function(req, res){
 
 app.get('/sql', function (req, res) {
    
-    var sql = require("mssql");
+    
 
     // config for your database
     
@@ -108,17 +108,31 @@ app.post("/read", (req, res) => {
 var nfc1 = req.body.id
 nfc = nfc1
 
-con.connect(function(err) {
-    if (err) throw err;
-    config.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, result) {
-      if (err) throw err;
-      ressql = result;
-      console.log(result)
-      res.redirect('/nfcsql')
-      
-    });
-  });
+app.get('/sql', function (req, res) {
+   
+    
 
+    // config for your database
+    
+
+    // connect to your database
+    sql.connect(config, function (err) {
+    
+        if (err) console.log(err);
+
+        // create Request object
+        var request = new sql.Request();
+
+
+        request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, result) {
+            if (err) throw err;
+            ressql = result;
+            console.log(result)
+            res.redirect('/nfcsql');})
+           
+       
+    });
+});
 });
 
 console.log("the server now running")

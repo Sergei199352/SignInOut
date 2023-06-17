@@ -104,7 +104,7 @@ app.post("/arraysum", (req, res) => {
 app.post("/read", (req, res) => {
 var nfc1 = req.body.id
 nfc = nfc1
-res.json({ result: nfc });
+
 con.connect(function(err) {
     if (err) throw err;
     config.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, result) {

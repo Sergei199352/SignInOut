@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var sql = require("mssql");
+var sql = require("mssql");//making
 var app = express();
 var nfc = "";
 var ressql = "";

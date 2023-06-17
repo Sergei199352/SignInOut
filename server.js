@@ -17,7 +17,7 @@ let trarray = [];
 
 app.get("/", function(req, res){
 
-    res.render("pages/index",{NFCdata, array})
+    res.render("pages/index",{NFCdata, trarray})
 
 
 })

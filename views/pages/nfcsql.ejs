@@ -9,9 +9,9 @@
     <h1>Post Data:</h1>
     <% if (ressql) { %>
         <p><%= ressql %></p>
-      <p><%= ressql.recordset.rgu_id %></p>
-      <p><%= ressql.recordset.Name %></p>
-      <p><%= ressql.recordset.Email %></p>
+      <p><%= ressql.recordsets.recordset.rgu_id %></p>
+      <p><%= ressql.recordsets.recordset.Name %></p>
+      <p><%= ressql.recordsets.recordset.Email %></p>
       
     <% } else { %>
       <p>No data posted yet.</p>

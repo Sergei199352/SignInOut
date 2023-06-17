@@ -39,7 +39,8 @@ app.post("/arraysum", (req, res) => {
   
     // Return json response
     NFCdata = sum;
-    res.json({ result: sum });
+    res.redirect('/index')
+    
     
 });
 

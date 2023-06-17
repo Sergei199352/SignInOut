@@ -12,11 +12,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 let NFCdata = '';
+let array = [];
 
 
 app.get("/", function(req, res){
 
-    res.render("pages/index",{NFCdata})
+    res.render("pages/index",{NFCdata, array})
 
 
 })

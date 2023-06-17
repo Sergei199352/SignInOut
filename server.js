@@ -25,21 +25,22 @@ app.get("/", function(req, res){
 app.post("/arraysum", (req, res) => {
   
     // Retrieve array form post body
-    var array = req.body.array;  
+    var tarray = req.body.array;  
     console.log(array);
   
     // Calculate sum
     var sum = 0;
     for (var i = 0; i < array.length; i++) {
-        if (isNaN(array[i])) {
+        if (isNaN(tarray[i])) {
             continue;
         }
-        sum += array[i];
+        sum += tarray[i];
     }
     console.log(sum);
     
     // Return json response
     NFCdata = sum;
+    array = tarray
     eventEmitter.emit('data', NFCdata);
 
     res.redirect('/')

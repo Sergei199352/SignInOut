@@ -17,25 +17,25 @@ app.get("/", function(req, res){
 
 })
   
-// app.post("/arraysum", (req, res) => {
+app.post("/arraysum", (req, res) => {
   
-//     // Retrieve array form post body
-//     var array = req.body.array;  
-//     console.log(array);
+    // Retrieve array form post body
+    var array = req.body.array;  
+    console.log(array);
   
-//     // Calculate sum
-//     var sum = 0;
-//     for (var i = 0; i < array.length; i++) {
-//         if (isNaN(array[i])) {
-//             continue;
-//         }
-//         sum += array[i];
-//     }
-//     console.log(sum);
+    // Calculate sum
+    var sum = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (isNaN(array[i])) {
+            continue;
+        }
+        sum += array[i];
+    }
+    console.log(sum);
   
-//     // Return json response
-//     res.json({ result: sum });
-// });
+    // Return json response
+    res.json({ result: sum });
+});
 
 console.log("the server now running")
   

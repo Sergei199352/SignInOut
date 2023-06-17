@@ -7,7 +7,7 @@ array = [1,2,3,4,5,6,7,8,9,10]
 data = {'array':array}
   
 # The POST request to our node server
-res = requests.post('51.104.28.83/arraysum', json=data) 
+res = requests.post('https://rguappsign.azurewebsites.net/arraysum', json=data) 
   
 # Convert response data to json
 returned_data = res

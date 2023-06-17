@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 let NFCdata = '';
-let array = [];
+let tarray = [];
 
 
 app.get("/", function(req, res){
@@ -25,22 +25,22 @@ app.get("/", function(req, res){
 app.post("/arraysum", (req, res) => {
   
     // Retrieve array form post body
-    var tarray = req.body.array;  
+    var array = req.body.array;  
     console.log(array);
   
     // Calculate sum
     var sum = 0;
     for (var i = 0; i < array.length; i++) {
-        if (isNaN(tarray[i])) {
+        if (isNaN(array[i])) {
             continue;
         }
-        sum += tarray[i];
+        sum += array[i];
     }
     console.log(sum);
     
     // Return json response
     NFCdata = sum;
-    array = tarray
+    tarray = array;
     eventEmitter.emit('data', NFCdata);
 
     res.redirect('/')

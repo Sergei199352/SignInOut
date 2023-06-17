@@ -108,7 +108,7 @@ app.post("/read", (req, res) => {
 var nfc1 = req.body.id
 nfc = nfc1
 
-app.get('/sql', function (req, res) {
+
    
     
 
@@ -132,8 +132,9 @@ app.get('/sql', function (req, res) {
            
        
     });
+    res.send(nfc)
 });
-});
+
 
 console.log("the server now running")
   //adding some new info

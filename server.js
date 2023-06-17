@@ -113,6 +113,7 @@ con.connect(function(err) {
     config.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, result) {
       if (err) throw err;
       ressql = result;
+      res.redirect('/nfcsql')
       
     });
   });

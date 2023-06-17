@@ -22,6 +22,46 @@ app.get("/", function(req, res){
 
 })
   
+
+
+
+
+app.get('/sql', function (req, res) {
+   
+    var sql = require("mssql");
+
+    // config for your database
+    var config = {
+        user: 'sergey',
+        password: 'Muskula.123',
+        server: 'dbsserver.database.windows.net', 
+        database: 'registerDBS' 
+    };
+
+    // connect to your database
+    sql.connect(config, function (err) {
+    
+        if (err) console.log(err);
+
+        // create Request object
+        var request = new sql.Request();
+           
+        // query to the database and get the records
+        request.query('select * from dbo.SignInOut', function (err, recordset) {
+            
+            if (err) console.log(err)
+
+            // send records as a response
+            res.send(recordset);
+            
+        });
+    });
+});
+
+
+
+
+//------------Post Functions-------------------
 app.post("/arraysum", (req, res) => {
   
     // Retrieve array form post body

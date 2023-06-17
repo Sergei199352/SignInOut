@@ -70,6 +70,9 @@ app.get('/sql', function (req, res) {
         });
     });
 });
+app.get('/nfcsql', function(req,res){
+    res.render('pages/nfcsql')
+})
 
 
 

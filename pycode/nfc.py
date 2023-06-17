@@ -12,9 +12,12 @@ try:
         print("ID: %s\nText: %s" % (id,text))
         nfc = {'id':id,
                 'text':text}
-  
-        res = requests.post('https://rguappsign.azurewebsites.net/read', json=nfc) 
+        res = requests.post('https://rguappsign.azurewebsites.net/nread', json=nfc)
+         
         sleep(5)
 except KeyboardInterrupt:
     GPIO.cleanup()
     raise
+
+
+

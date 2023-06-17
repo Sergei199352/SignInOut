@@ -32,6 +32,7 @@ app.get("/", function(req, res){
 
 
 });
+// renders the page that recieves the nfc data
 app.get("/nread", function(req, res){
 
     res.render("pages/nfc",{nfc})
@@ -98,6 +99,8 @@ app.post("/arraysum", (req, res) => {
     res.json({ result: sum });
     
 });
+
+// post that recievews the nfc data
 app.post("/read", (req, res) => {
 nfc = req.body.nfc
 

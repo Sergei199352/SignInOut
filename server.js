@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 let NFCdata = '';
 
 
-app.get("/", function(req, res){
+app.get("/index", function(req, res){
 
     res.render("pages/index",{NFCdata})
 

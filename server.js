@@ -8,6 +8,16 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+var config = {
+    user: 'sergey',
+    password: 'Muskula.123',
+    server: 'dbsserver.database.windows.net', 
+    database: 'registerDBS' 
+};
+
+
+
+
 
 
 
@@ -31,12 +41,7 @@ app.get('/sql', function (req, res) {
     var sql = require("mssql");
 
     // config for your database
-    var config = {
-        user: 'sergey',
-        password: 'Muskula.123',
-        server: 'dbsserver.database.windows.net', 
-        database: 'registerDBS' 
-    };
+    
 
     // connect to your database
     sql.connect(config, function (err) {

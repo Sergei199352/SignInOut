@@ -128,7 +128,7 @@ nfc = nfc1
             if (err) throw err;
             ressql = result;
             console.log(result)
-            res.redirect('/nfcsql');})
+            ;})
            
        
     });

@@ -4,6 +4,7 @@ var sql = require("mssql");//making
 var app = express();
 var nfc = "";
 var ressql = {};
+var data = [];
 app.set('view engine', 'ejs');
   
 app.use(bodyParser.json());
@@ -78,6 +79,8 @@ app.get('/nfcsql', function(req,res){
 
 
 //------------Post Functions-------------------
+
+// this get function was used to test for the communication between the endpoint and the python code
 app.post("/arraysum", (req, res) => {
   
     // Retrieve array form post body
@@ -103,9 +106,9 @@ app.post("/arraysum", (req, res) => {
     
 });
 
-// post that recievews the nfc data
+// post that recievews the nfc data from the python code
 app.post("/read", (req, res) => {
-var nfc1 = req.body.id
+var nfc1 = req.body.id// getting the nfc id from the python code
 nfc = nfc1//
 
 
@@ -123,11 +126,13 @@ nfc = nfc1//
         // create Request object
         var request = new sql.Request();
 
-
+// SQL query that gets the records
         request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, recordset) {
             if (err) throw err;
             ressql = recordset;
+            data.push(ressql.recordset[0])
             console.log(ressql)
+            console.log(data)
             ;})
            
        

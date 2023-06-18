@@ -11,16 +11,19 @@
         
       
 
-      <h1>3D Array List</h1>
-  <ul>
-    <% for (let i = 0; i < ressql.push.length; i++) { %>
-      <% for (let j = 0; j < ressql.push[i].length; j++) { %>
-        <% for (let k = 0; k < ressql.push[i][j].length; k++) { %>
-          <li><%= ressql.push[i][j][k] %></li>
+      <% for (let i = 0; i < ressql.length; i++) { %>
+        <% for (let j = 0; j < ressql[i].length; j++) { %>
+          <div id=<%= nfc %>>
+            <h2>Record <%= i + 1 %>, Object <%= j + 1 %></h2>
+            <ul>
+              <% const recordsets = ressql[i][j].recordsets[0]; %>
+              <% for (let key in recordsets) { %>
+                <li><%= key %>: <%= recordsets[key] %></li>
+              <% } %>
+            </ul>
+          </div>
         <% } %>
       <% } %>
-    <% } %>
-  </ul>
 
       
       

@@ -8,12 +8,14 @@
 <body>
     <h1>Post Data:</h1>
     <% if (ressql) { %>
-        
-      
+        <p><%= ressql %></p>
+      <p><%= ressql.recordsets[0].rgu_id %></p>
+      <p><%= ressql.recordsets[0].Name %></p>
+      <p><%= ressql.recordsets[0].Email %></p>
 
-      <% for (let i = 0; i < ressql.length; i++) { %>
+      <% for (let i = 0; i < ressql.recordsets.length; i++) { %>
         <% for (let j = 0; j < ressql.recordsets[i].length; j++) { %>
-         <div id=<%= nfc %>> <h2>Record <%= i + 1 %>, Object <%= j + 1 %></h2>
+         <div id=> <h2>Record <%= i + 1 %>, Object <%= j + 1 %></h2>
           <ul>
             <% const recordset = ressql.recordsets[i][j]; %>
             <% for (let key in recordset) { %>

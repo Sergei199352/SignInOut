@@ -12,11 +12,11 @@
       
 
         <% for (let i = 0; i < ressql.length; i++) { %>
-          <h2>RGU ID: <%= ressql.recordset[i].rgu_id %></h2>
-          <p>Name: <%= ressql.recordset[i].Name %></p>
-          <p>Email: <%= ressql.recordset[i].Email %></p>
-          <p>Building: <%= ressql.recordset[i].Building %></p>
-          <p>Priority: <%= ressql.recordset[i].Priority %></p>
+          <h2>RGU ID: <%= ressql.recordset.rgu_id %></h2>
+          <p>Name: <%= ressql.recordset.Name %></p>
+          <p>Email: <%= ressql.recordset.Email %></p>
+          <p>Building: <%= ressql.recordset.Building %></p>
+          <p>Priority: <%= ressql.recordset.Priority %></p>
         <% } %>
       
     <% } else { %>

@@ -11,13 +11,18 @@
         <p><%= ressql %></p>
       
 
-        <% for (let i = 0; i < ressql.length; i++) { %>
-          <h2>RGU ID: <%= ressql.recordset.rgu_id %></h2>
-          <p>Name: <%= ressql.recordset.Name %></p>
-          <p>Email: <%= ressql.recordset.Email %></p>
-          <p>Building: <%= ressql.recordset.Building %></p>
-          <p>Priority: <%= ressql.recordset.Priority %></p>
+        <% for (let i = 0; i < ressql.recordset.length; i++) { %>
+          
+            <h2>Record <%= i + 1 %></h2>
+            <ul>
+              <% const recordset = ressql.recordset[i]; %>
+              <% for (let key in recordset) { %>
+                <li><%= key %>: <%= recordset[key] %></li>
+              <% } %>
+            </ul>
+          
         <% } %>
+        
       
     <% } else { %>
       <p>No data posted yet.</p>

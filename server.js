@@ -65,7 +65,7 @@ app.get('/sql', function (req, res) {
             if (err) console.log(err)
 
             // send records as a response
-            res.status(200).send(recordset);
+            res.send(recordset);
             
         });
     });
@@ -132,7 +132,7 @@ nfc = nfc1//
            
        
     });
-    res.send(nfc)
+    res.status(200).send(ressql)
 });
 
 

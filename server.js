@@ -24,7 +24,6 @@ var config = {
 
 let NFCdata = '';
 let trarray = [];
-let ajax = {};
 
 
 app.get("/", function(req, res){
@@ -125,24 +124,10 @@ nfc = nfc1//
         var request = new sql.Request();
 
 
-        request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id   = "+ nfc , function (err, recordset) {
+        request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, recordset) {
             if (err) throw err;
-            ressql.push = recordset;
+            ressql = recordset;
             console.log(recordset)
-
-            // for (let i = 0; i< ressql.recordsets.length; i++){
-            //     for(let j = 0; j<ressql.recordsets[i].length;j++){
-            //         const rec = ressql.recordsets[i][j];
-            //         for(let key in rec[key]){
-            //             ajax={key:recordset[key]}
-
-            //         }
-                    
-            //     }
-            
-            console.log(ajax)
-
-
             ;})
            
        

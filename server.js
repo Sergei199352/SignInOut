@@ -137,9 +137,10 @@ nfc = nfc1//
                         ajax={key:recordset[key]}
 
                     }
-                    console.log(ajax)
+                    
                 }
             }
+            console.log(ajax)
 
 
             ;})

@@ -11,11 +11,11 @@
         
       
 
-      <% for (let i = 0; i < ressql.push.recordsets.length; i++) { %>
-        <% for (let j = 0; j < ressql.oush.recordsets[i].length; j++) { %>
+      <% for (let i = 0; i < ressql.recordsets.length; i++) { %>
+        <% for (let j = 0; j < ressql.recordsets[i].length; j++) { %>
          <div id=<%= nfc %>> <h2>Record <%= i + 1 %>, Object <%= j + 1 %></h2>
           <ul>
-            <% const recordset = ressql.push.recordsets[i][j]; %>
+            <% const recordset = ressql.recordsets[i][j]; %>
             <% for (let key in recordset) { %>
               <li><%= key %>: <%= recordset[key] %></li>
             <% } %>

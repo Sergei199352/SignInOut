@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var sql = require("mssql");//making
 var app = express();
 var nfc = "";
-var ressql = [];
+var ressql = "";
 app.set('view engine', 'ejs');
   
 app.use(bodyParser.json());
@@ -24,6 +24,7 @@ var config = {
 
 let NFCdata = '';
 let trarray = [];
+let ajax = {};
 
 
 app.get("/", function(req, res){
@@ -128,6 +129,19 @@ nfc = nfc1//
             if (err) throw err;
             ressql.push = recordset;
             console.log(recordset)
+
+            for (let i = 0; i< ressql.recordsets.length; i++){
+                for(let j = 0; j<ressql.recordsets[i].length;j++){
+                    const rec = ressql.recordsets[i][j];
+                    for(let key in rec[key]){
+                        ajax={key:recordset[key]}
+
+                    }
+                    console.log(ajax)
+                }
+            }
+
+
             ;})
            
        

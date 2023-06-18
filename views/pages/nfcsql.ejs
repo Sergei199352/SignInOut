@@ -16,9 +16,9 @@
           <div id=<%= nfc %>>
             <h2>Record <%= i + 1 %>, Object <%= j + 1 %></h2>
             <ul>
-              <% const recordsets = ressql[i][j].recordsets[0]; %>
-              <% for (let key in recordsets) { %>
-                <li><%= key %>: <%= recordsets[key] %></li>
+              <% const recordset = ressql[i][j].recordset[0]; %>
+              <% for (let key in recordset) { %>
+                <li><%= key %>: <%= recordset[key] %></li>
               <% } %>
             </ul>
           </div>

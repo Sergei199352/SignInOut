@@ -125,7 +125,7 @@ nfc = nfc1//
         var request = new sql.Request();
 
 
-        request.query("SELECT * FROM dbo.SignInOut LIMIT 1 WHERE rgu_id   = "+ nfc , function (err, recordset) {
+        request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id   = "+ nfc , function (err, recordset) {
             if (err) throw err;
             ressql.push = recordset;
             console.log(recordset)

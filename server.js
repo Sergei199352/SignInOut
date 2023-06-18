@@ -4,7 +4,7 @@ var sql = require("mssql");//making
 var app = express();
 var nfc = "";
 var ressql = "";
-var request = new sql.Request();
+
 app.set('view engine', 'ejs');
   
 app.use(bodyParser.json());
@@ -115,7 +115,7 @@ nfc = nfc1//
 
     // config for your database
     
-
+    var request = new sql.Request();
     // connect to your database
     sql.connect(config, function (err) {
     

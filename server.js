@@ -126,7 +126,7 @@ nfc = nfc1//
 
         request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, recordset) {
             if (err) throw err;
-            ressql = recordset.recordset;
+            ressql = recordset;
             console.log(ressql)
             ;})
            

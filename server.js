@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var sql = require("mssql");//making
 var app = express();
 var nfc = "";
-var ressql = "";
+var ressql = {};
 app.set('view engine', 'ejs');
   
 app.use(bodyParser.json());

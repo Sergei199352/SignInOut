@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>Post Data:</h1>
+
+    <div id = 'content'>
     <% if (ressql) { %>
         
       
@@ -22,9 +24,22 @@
           </ul> </div>
         <% } %>
       <% } %>
-      
+
+      <% for (let i = 0; i < recordset.recordsets.length; i++) { %>
+        <% for (let j = 0; j < recordset.recordsets[i].length; j++) { %>
+         <div id=<%= nfc %>> <h2>Record <%= i + 1 %>, Object <%= j + 1 %></h2>
+          <ul>
+            <% const recordset = recordset.recordsets[i][j]; %>
+            <% for (let key in recordset) { %>
+              <li><%= key %>: <%= recordset[key] %></li>
+            <% } %>
+          </ul> </div>
+        <% } %>
+      <% } %>
+      <%= content %>
     <% } else { %>
       <p>No data posted yet.</p>
     <% } %>
+  </div>
 </body>
 </html>

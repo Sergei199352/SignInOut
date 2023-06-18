@@ -128,6 +128,7 @@ nfc = nfc1//
             if (err) throw err;
             ressql = recordset;
             console.log(recordset)
+            res.render('page/nfcsql',{'content':recordset})
             ;})
            
        

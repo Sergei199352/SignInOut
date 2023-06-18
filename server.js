@@ -4,6 +4,7 @@ var sql = require("mssql");//making
 var app = express();
 var nfc = "";
 var ressql = "";
+var request = new sql.Request();
 app.set('view engine', 'ejs');
   
 app.use(bodyParser.json());
@@ -121,13 +122,13 @@ nfc = nfc1//
         if (err) console.log(err);
 
         // create Request object
-        var request = new sql.Request();
+        
 
 
         request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, recordset) {
             if (err) throw err;
-            ressql = recordset;
-            console.log(recordset)
+            ressql = recordset.recordset;
+            console.log(ressql)
             ;})
            
        

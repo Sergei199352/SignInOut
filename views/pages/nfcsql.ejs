@@ -8,13 +8,16 @@
 <body>
     <h1>Post Data:</h1>
     <% if (ressql) { %>
-      <% for (let i = 0; i < ressql.recordset.length; i++) { %>
-        <h2>RGU ID: <%= ressql.recordset[i].rgu_id %></h2>
-        <p>Name: <%= ressql.recordset[i].Name %></p>
-        <p>Email: <%= ressql.recordset[i].Email %></p>
-        <p>Building: <%= ressql.recordset[i].Building %></p>
-        <p>Priority: <%= ressql.recordset[i].Priority %></p>
-      <% } %>
+        <p><%= ressql %></p>
+      
+
+        <% for (let i = 0; i < ressql.recordsets.length; i++) { %>
+          <h2>RGU ID: <%= ressql.recordset[i].rgu_id %></h2>
+          <p>Name: <%= ressql.recordset[i].Name %></p>
+          <p>Email: <%= ressql.recordset[i].Email %></p>
+          <p>Building: <%= ressql.recordset[i].Building %></p>
+          <p>Priority: <%= ressql.recordset[i].Priority %></p>
+        <% } %>
       
     <% } else { %>
       <p>No data posted yet.</p>

@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var sql = require("mssql");//making
 var app = express();
 var nfc = "";
-var ressql = "";
+var ressql = [];
 app.set('view engine', 'ejs');
   
 app.use(bodyParser.json());
@@ -126,7 +126,7 @@ nfc = nfc1//
 
         request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id  = "+ nfc , function (err, recordset) {
             if (err) throw err;
-            ressql = recordset;
+            ressql.push = recordset;
             console.log(recordset)
             ;})
            

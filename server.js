@@ -38,11 +38,12 @@ app.get("/", function(req, res){
         var request = new sql.Request();
            
         // query to the database and get the records
-        request.query('select * from dbo.SignInOut WHERE is_present = "true"', function (err, recordset) {
+        request.query('SELECT * from dbo.SignInOut WHERE is_present = "true"', function (err, recordset) {
             
             if (err) console.log(err)
 
             // send records as a response
+            console.log(recordset)
             res.render("pages/index",{recordset})
             
         });

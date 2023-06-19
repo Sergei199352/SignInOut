@@ -11,17 +11,17 @@
         <p><%= ressql %></p>
       
 
-        <% for (let i = 0; i < ressql.recordset.length; i++) { %>
+        
           
-            <h2>Record <%= i + 1 %></h2>
+            <h2>Record <%= i %></h2>
             <ul>
-              <% const recordset = ressql.recordset[i]; %>
+              <% const recordset = ressql.recordset[0]; %>
               <% for (let key in recordset) { %>
                 <li><%= key %>: <%= recordset[key] %></li>
               <% } %>
             </ul>
           
-        <% } %>
+        
         
         
       

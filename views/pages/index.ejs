@@ -7,11 +7,29 @@
 </head>
 <body>
     <h1>Post Data:</h1>
-    <% if (recordset) { %>
-      <p><%= recordset.recordset[0].Name %></p>
+    <% if (records != 0) { %>
+      <% for (var i = 0, records.length, i++){ %>
+        <h2>Record </h2>
+            <ul>
+              <% const recordset = ressql.recordset[i]; %>
+              <% for (let key in recordset) { %>
+                <li><%= key %>: <%= recordset[key] %></li>
+              <% } %>
+            
+            </ul>
+            <% } %>
+    
+
       
-    <% } else { %>
-      <p>No data posted yet.</p>
-    <% } %>
+        
+          
+        
+      
+      
+      
+    
+  <% } else { %>
+    <p>No data posted yet.</p>
+  <% } %>
 </body>
 </html>

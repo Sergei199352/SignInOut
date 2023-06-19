@@ -41,10 +41,10 @@ app.get("/", function(req, res){
         request.query("SELECT * FROM dbo.SignInOut WHERE is_present = 1", function (err, recordset) {
             
             if (err) console.log(err)
-
+            var records = recordset.recordset
             // send records as a response
-            console.log(recordset)
-            res.render("pages/index",{recordset})
+            console.log(records)
+            res.render("pages/index",{records})
             
         });
     });

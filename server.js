@@ -28,13 +28,50 @@ let trarray = [];
 
 
 app.get("/", function(req, res){
+     
 
-    res.render("pages/index",{NFCdata, trarray})
+    sql.connect(config, function (err) {
+    
+        if (err) console.log(err);
+
+        // create Request object
+        var request = new sql.Request();
+           
+        // query to the database and get the records
+        request.query('select * from dbo.SignInOut WHERE is_present = "true"', function (err, recordset) {
+            
+            if (err) console.log(err)
+
+            // send records as a response
+            res.render("pages/index",{recordset})
+            
+        });
+    });
+
+
+    
 
 
 });
 // renders the page that recieves the nfc data
 app.get("/nread", function(req, res){
+    sql.connect(config, function (err) {
+    
+        if (err) console.log(err);
+
+        // create Request object
+        var request = new sql.Request();
+           
+        // query to the database and get the records
+        request.query('select * from dbo.SignInOut', function (err, recordset) {
+            
+            if (err) console.log(err)
+
+            // send records as a response
+            res.send(recordset);
+            
+        });
+    });
 
     res.render("pages/nfc",{nfc})
 

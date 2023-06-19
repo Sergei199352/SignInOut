@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>Post Data:</h1>
-    <% if (NFCdata) { %>
-      <p><%= NFCdata %></p>
-      <p><%= trarray %></p>
+    <% if (recordset) { %>
+      <p><%= recordset.recordset[0].Name %></p>
+      
     <% } else { %>
       <p>No data posted yet.</p>
     <% } %>

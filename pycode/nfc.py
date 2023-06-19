@@ -15,7 +15,7 @@ try:
         res = requests.post('https://rguappsign.azurewebsites.net/read', json=nfc)
         print(res)
          
-        sleep(5)
+        sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
     raise

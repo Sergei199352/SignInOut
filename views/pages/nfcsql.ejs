@@ -22,6 +22,17 @@
             </ul>
           
         <% } %>
+        <% for (let i = 0; i < data.length; i++) { %>
+          
+          <h2>Record <%= i + 1 %></h2>
+          <ul>
+            <% const recordset = data[i]; %>
+            <% for (let key in recordset) { %>
+              <li><%= key %>: <%= recordset[key] %></li>
+            <% } %>
+          </ul>
+        
+      <% } %>
         
       
     <% } else { %>

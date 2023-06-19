@@ -44,6 +44,7 @@ app.get("/", function(req, res){
             var records = recordset.recordset
             // send records as a response
             console.log(records)
+            console.log(records.length)
             res.render("pages/index",{records})
             
         });

@@ -2,32 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    
     <title>Document</title>
 </head>
 <body>
     <h1>Post Data:</h1>
     <% if (records != 0) { %>
-      <% for (var i = 0, records.length, i++){ %>
+      <% for (var i = 0; i < records.length; i++){ %>
         <h2>Record </h2>
             <ul>
               <% const recordset = records[i]; %>
               <% for (let key in recordset) { %>
                 <li><%= key %>: <%= recordset[key] %></li>
               <% } %>
-            
             </ul>
-            <% } %>
-    
-
-      
-        
-          
-        
-      
-      
-      
-    
+      <% } %>
   <% } else { %>
     <p>No data posted yet.</p>
   <% } %>

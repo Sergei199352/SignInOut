@@ -134,17 +134,14 @@ app.post("/read", (req, res) => {
         var request = new sql.Request();
 
     // SQL query that gets the records
-        request.query(selectQuery , function (err, recordset) {
+        request.query("SELECT is_present FROM dbo.SignInOut WHERE rgu_id = "+ nfc , function (err, recordset) {
             if (err) throw err;
-            ressql = recordset;
-            
-            console.log(ressql)
-            
+           console.log(recordset)
             ;})
            
        
     });
-    res.status(200).send(ressql)
+    res.status(200).send("done")
 });
 
 

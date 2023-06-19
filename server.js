@@ -110,10 +110,7 @@ app.post("/arraysum", (req, res) => {
 app.post("/read", (req, res) => {
 
 
-    var updateQuery = "UPDATE dbo.SignInOut SET is_present = " 
-
-    var selectQuery = "SELECT is_present FROM dbo.SignInOut WHERE rgu_id = " + nfc;
-
+    
 
     var nfc1 = req.body.id// getting the nfc id from the python code
     nfc = nfc1//
@@ -139,14 +136,14 @@ app.post("/read", (req, res) => {
             console.log(recordset.recordset[0].is_present)
             if (recordset.recordset[0].is_present == false){
 
-                request.query("UPDATE dbo.SignInOut SET is_present = true WHERE rgu_id = "+ nfc, function(err, line){
+                request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = "+ nfc, function(err, line){
                     if (err) throw err;
                     console.log(line)
                 } )
 
             }
             else{
-                request.query("UPDATE dbo.SignInOut SET is_present = false WHERE rgu_id = "+ nfc, function(err, line){
+                request.query("UPDATE dbo.SignInOut SET is_present = 'false' WHERE rgu_id = "+ nfc, function(err, line){
                     if (err) throw err;
                     console.log(line)
                 } )

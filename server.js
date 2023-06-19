@@ -137,6 +137,20 @@ app.post("/read", (req, res) => {
         request.query("SELECT is_present FROM dbo.SignInOut WHERE rgu_id = "+ nfc , function (err, recordset) {
             if (err) throw err;
             console.log(recordset.recordset[0].is_present)
+            if (recordset.recordset[0].is_present == false){
+
+                request.query("UPDATE dbo.SignInOut SET is_present = true WHERE rgu_id = "+ nfc, function(err, line){
+                    if (err) throw err;
+                    console.log(line)
+                } )
+
+            }
+            else{
+                request.query("UPDATE dbo.SignInOut SET is_present = false WHERE rgu_id = "+ nfc, function(err, line){
+                    if (err) throw err;
+                    console.log(line)
+                } )
+            }
             ;})
            
        

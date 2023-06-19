@@ -38,7 +38,7 @@ app.get("/", function(req, res){
         var request = new sql.Request();
            
         // query to the database and get the records
-        request.query("SELECT * from dbo.SignInOut WHERE is_present ="+ true, function (err, recordset) {
+        request.query("SELECT * FROM dbo.SignInOut WHERE is_present = 1", function (err, recordset) {
             
             if (err) console.log(err)
 

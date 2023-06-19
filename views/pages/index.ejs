@@ -11,7 +11,7 @@
       <% for (var i = 0, records.length, i++){ %>
         <h2>Record </h2>
             <ul>
-              <% const recordset = ressql.recordset[i]; %>
+              <% const recordset = records[i]; %>
               <% for (let key in recordset) { %>
                 <li><%= key %>: <%= recordset[key] %></li>
               <% } %>

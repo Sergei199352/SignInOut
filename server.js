@@ -136,7 +136,7 @@ app.post("/read", (req, res) => {
     // SQL query that gets the records
         request.query("SELECT is_present FROM dbo.SignInOut WHERE rgu_id = "+ nfc , function (err, recordset) {
             if (err) throw err;
-           console.log(recordset)
+            console.log(recordset.recordset[0].is_present)
             ;})
            
        

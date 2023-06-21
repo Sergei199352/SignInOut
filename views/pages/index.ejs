@@ -7,15 +7,20 @@
 <body>
     <h1>Post Data:</h1>
     <% if (records != 0) { %>
-      <% for (var i = 0; i < records.length; i++){ %>
-        <h2>Record </h2>
-            <ul>
-              <% const recordset = records[i]; %>
-              <% for (let key in recordset) { %>
-                <li><%= key %>: <%= recordset[key] %></li>
-              <% } %>
-            </ul>
-      <% } %>
+      <table>
+        <% for (var i = 0; i < records.length; i++){ %>
+          <tr>
+            <h2>Record <%= i + 1 %></h2>
+          </tr>
+          <% const recordset = records[i]; %>
+          <% for (let key in recordset) { %>
+            <tr>
+              <td><%= key %></td>
+              <td><%= recordset[key] %></td>
+            </tr>
+          <% } %>
+        <% } %>
+      </table>
   <% } else { %>
     <p>No data posted yet.</p>
   <% } %>

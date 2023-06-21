@@ -7,20 +7,64 @@
 <body>
     <h1>Post Data:</h1>
     <% if (records != 0) { %>
-      <table>
-        <% for (var i = 0; i < records.length; i++){ %>
-          <tr>
-            <h2>Record <%= i + 1 %></h2>
-          </tr>
-          <% const recordset = records[i]; %>
-          <% for (let key in recordset) { %>
+      <div>
+        <h2>Marshals</h2>
+        <table>
+          <thead>
             <tr>
-              <td><%= key %></td>
-              <td><%= recordset[key] %></td>
+              <% const keys1 = Object.keys(records[0]).filter(key => key !== 'rgu_id'); %>
+              <% for (let i = 0; i < keys1.length; i++) { %>
+                <th><%= keys1[i] %></th>
+              <% } %>
             </tr>
-          <% } %>
-        <% } %>
-      </table>
+          </thead>
+          <tbody>
+            <% records.sort((a, b) => a['rgu_id'] - b['rgu_id']); %>
+            <% for (var i = 0; i < records.length; i++){ %>
+              <% const recordset = records[i]; %>
+              <% if (recordset['Role'] === 'marshal') { %>
+                <tr>
+                  <% for (let key in recordset) { %>
+                    <% if (key !== 'rgu_id') { %>
+                      <td><%= recordset[key] %></td>
+                    <% } %>
+                  <% } %>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      
+      <div>
+        <h2>Aiders</h2>
+        <table>
+          <thead>
+            <tr>
+              <% const keys2 = Object.keys(records[0]).filter(key => key !== 'rgu_id'); %>
+              <% for (let i = 0; i < keys2.length; i++) { %>
+                <th><%= keys2[i] %></th>
+              <% } %>
+            </tr>
+          </thead>
+          <tbody>
+            <% records.sort((a, b) => a['rgu_id'] - b['rgu_id']); %>
+            <% for (var i = 0; i < records.length; i++){ %>
+              <% const recordset = records[i]; %>
+              <% if (recordset['Role'] === 'aider') { %>
+                <tr>
+                  <% for (let key in recordset) { %>
+                    <% if (key !== 'rgu_id') { %>
+                      <td><%= recordset[key] %></td>
+                    <% } %>
+                  <% } %>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      
   <% } else { %>
     <p>No data posted yet.</p>
   <% } %>

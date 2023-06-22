@@ -16,7 +16,7 @@ $(document).ready(function() {
   setInterval(function() {
     // Perform AJAX request
     $.ajax({
-      url: "http://localhost:8080/",
+      url: "https://rguappsign.azurewebsites.net/",
       method: "GET",
       success: function(response) {
         // Handle the success response
@@ -28,5 +28,5 @@ $(document).ready(function() {
         // Handle the error response
       }
     });
-  }, 60000);
+  }, 10000);
 });

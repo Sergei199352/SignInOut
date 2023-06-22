@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // Hide the initially visible table
-  $("#marshals").hide();
+  
   
   // Attach a click event handler to the marshals button
   $("#toggleMarshalsTable").click(function() {

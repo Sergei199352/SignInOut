@@ -12,6 +12,12 @@ $(document).ready(function() {
     $("#aiders").toggle();
   });
   
+  
+  
+  $("#toggleWheelchairTable").click(function() {
+    $("#wheelchairs").toggle();
+  });
+  
   // Perform automatic page refresh after 10 seconds using AJAX
   // setInterval(function() {
   //   // Perform AJAX request

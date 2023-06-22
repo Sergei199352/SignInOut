@@ -10,66 +10,102 @@
 </head>
 <body>
     <h1>Emergency Staff Tables:</h1>
-    <button id="toggleMarshalsTable">Toggle Aiders Table</button>
-    <button id="toggleAidersTable">Toggle Marshals Table</button>
+    
+    <button id="toggleMarshalsTable">Toggle Marshals Table</button>
+    <button id="toggleAidersTable"> Toggle Aiders Table</button>
+    <button id="toggleWheelchairTable">Toggle Wheelchair Operators Table</button>
     <% if (records != 0) { %>
       <div id="aiders">
-        <h2>Marshals</h2>
+        <h2>Aiders</h2>
         <table>
           <thead>
             <tr>
-              <% const keys1 = Object.keys(records[0]).filter(key => key !== 'rgu_id'); %>
-              <% for (let i = 0; i < keys1.length; i++) { %>
+              <% const keys1 = Object.keys(records[0]).filter(key => key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
+              for (let i = 0; i < keys1.length; i++) { %>
                 <th><%= keys1[i] %></th>
               <% } %>
             </tr>
           </thead>
           <tbody>
-            <% records.sort((a, b) => a['rgu_id'] - b['rgu_id']); %>
-            <% for (var i = 0; i < records.length; i++){ %>
-              <% const recordset = records[i]; %>
-              <% if (recordset['Role'] === 'marshal') { %>
+            <% records.sort((a, b) => a['rgu_id'] - b['rgu_id']);
+            for (var i = 0; i < records.length; i++){ %>
+              <% const recordset = records[i];
+              if (recordset['Aid']) { %>
                 <tr>
-                  <% for (let key in recordset) { %>
-                    <% if (key !== 'rgu_id') { %>
+                  <% for (let key in recordset) {
+                    if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
                       <td><%= recordset[key] %></td>
-                    <% } %>
-                  <% } %>
+                    <% }
+                  } %>
                 </tr>
-              <% } %>
-            <% } %>
+              <% }
+            } %>
           </tbody>
         </table>
       </div>
       
       <div id="marshals">
-        <h2>Aiders</h2>
+        <h2>Marshals</h2>
         <table>
           <thead>
             <tr>
-              <% const keys2 = Object.keys(records[0]).filter(key => key !== 'rgu_id'); %>
-              <% for (let i = 0; i < keys2.length; i++) { %>
+              <% const keys2 = Object.keys(records[0]).filter(key => key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
+              for (let i = 0; i < keys2.length; i++) { %>
                 <th><%= keys2[i] %></th>
               <% } %>
             </tr>
           </thead>
           <tbody>
-            <% records.sort((a, b) => a['rgu_id'] - b['rgu_id']); %>
-            <% for (var i = 0; i < records.length; i++){ %>
-              <% const recordset = records[i]; %>
-              <% if (recordset['Role'] === 'aider') { %>
+            <% records.sort((a, b) => a['rgu_id'] - b['rgu_id']);
+            for (var i = 0; i < records.length; i++){ %>
+              <% const recordset = records[i];
+              if (recordset['Marshal']) { %>
+                <tr>
+                  <% for (let key in recordset) {
+                    if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
+                      <td><%= recordset[key] %></td>
+                    <% }
+                  } %>
+                </tr>
+              <% }
+            } %>
+          </tbody>
+        </table>
+      </div>
+      
+      <div id="wheelchairs">
+        <h2>Wheelchairs</h2>
+        <table>
+          <thead>
+            <tr>
+              <% const keys3 = Object.keys(records[0]).filter(key => key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
+              for (let i = 0; i < keys3.length; i++) { %>
+                <th><%= keys3[i] %></th>
+              <% } %>
+            </tr>
+          </thead>
+          <tbody>
+            <% records.sort((a, b) => a['rgu_id'] - b['rgu_id']);
+            for (var i = 0; i < records.length; i++){ %>
+              <% const recordset = records[i];
+              if (recordset['Wheelchair']) { %>
                 <tr>
                   <% for (let key in recordset) { %>
-                    <% if (key !== 'rgu_id') { %>
+                    <% if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
                       <td><%= recordset[key] %></td>
                     <% } %>
                   <% } %>
                 </tr>
-              <% } %>
-            <% } %>
+              <% }
+            } %>
           </tbody>
         </table>
       </div>
+      
+      
+      
+      
+      
       
   <% } else { %>
     <p>No data posted yet.</p>

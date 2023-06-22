@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var sql = require("mssql");//making
 var app = express();
+app.use(express.static('public'))
 var nfc = "";
 var ressql = {};
 var data = [];

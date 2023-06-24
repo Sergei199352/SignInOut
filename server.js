@@ -121,12 +121,12 @@ app.post("/read", (req, res) => {
             if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) {
 
                 name = recordset.recordset[0].Name;
-                console.log("the name testing "+ recordset.recordset[0].is_present+" " +recordset.recordset[0].Name)
+                console.log("the name testing "+ recordset.recordset[0].is_present+" " +recordset.recordset[0].Email)
                 request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = " + nfc, function (err, line) {
                     if (err) throw err;
                     console.log(line);
                 });
-                request.query("INSERT INTO dbo.timeLog (Name, InOut ,time) VALUES ('" + name + "',1, GETDATE())"), function (err, line){
+                request.query("INSERT INTO dbo.timeLog (Name, InOut ,time) VALUES ('" + recordset.recordset[0].Email + "',1, GETDATE())"), function (err, line){
                     if (err){
                         console.log(err);
                         return;
@@ -136,10 +136,10 @@ app.post("/read", (req, res) => {
                 }
             } else {
                 name = recordset.recordset[0].Name;
-                console.log("the name testing "+ recordset.recordset[0].is_present+" " +recordset.recordset[0].Name)
+                console.log("the name testing "+ recordset.recordset[0].is_present+" " +recordset.recordset[0].Email)
                 request.query("UPDATE dbo.SignInOut SET is_present = 'false' WHERE rgu_id = " + nfc, function (err, line) {
                     if (err) throw err;
-                    request.query("INSERT INTO dbo.timeLog (Name, InOut ,time) VALUES ('" + name + "',0, GETDATE())"), function (err, line){
+                    request.query("INSERT INTO dbo.timeLog (Name, InOut ,time) VALUES ('" + recordset.recordset[0].Email + "',0, GETDATE())"), function (err, line){
                         if (err){
                             console.log(err);
                             return;

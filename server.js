@@ -94,6 +94,8 @@ app.post("/arraysum", (req, res) => {
 app.post("/read", (req, res) => {
     var nfc1 = req.body.id; // getting the NFC ID from the Python code
     nfc = nfc1;
+    var data = "";
+    var name = "";
 
     // config for your database
 
@@ -110,6 +112,7 @@ app.post("/read", (req, res) => {
         // SQL query that gets the records
         request.query("SELECT is_present FROM dbo.SignInOut WHERE rgu_id = " + nfc, function (err, recordset) {
             if (err) {
+                name = recordset.recordset[0].Name;
                 console.log("The ID with serial number " + nfc + " does not exist");
                 return res.status(404).send("NFC Tag Not Found");
             }
@@ -119,9 +122,25 @@ app.post("/read", (req, res) => {
                     if (err) throw err;
                     console.log(line);
                 });
+                request.query("INSERT INTO dbo.timeLog (Name, 1 ,time) VALUES ('" + name + "', GETDATE())"), function (err, line){
+                    if (err){
+                        console.log(err);
+                        return;
+                    }
+                    console.log(line)
+
+                }
             } else {
                 request.query("UPDATE dbo.SignInOut SET is_present = 'false' WHERE rgu_id = " + nfc, function (err, line) {
                     if (err) throw err;
+                    request.query("INSERT INTO dbo.timeLog (Name, 0 ,time) VALUES ('" + name + "', GETDATE())"), function (err, line){
+                        if (err){
+                            console.log(err);
+                            return;
+                        }
+                        console.log(line)
+
+                    }
                     console.log(line);
                 });
             }
@@ -138,3 +157,4 @@ console.log("the server now running")
   //adding some new info
 // Server listening to PORT 3000
 app.listen(8080);
+

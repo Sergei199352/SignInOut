@@ -1,5 +1,7 @@
 $(document).ready(function() {
   // Hide the initially visible table
+  $("#marshals").hide();
+  $("#wheelchairs").hide();
   
   
   // Attach a click event handler to the marshals button

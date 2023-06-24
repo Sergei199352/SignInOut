@@ -92,58 +92,45 @@ app.post("/arraysum", (req, res) => {
 
 // post that recievews the nfc data from the python code
 app.post("/read", (req, res) => {
-
-
-    
-
-    var nfc1 = req.body.id// getting the nfc id from the python code
-    nfc = nfc1//
-
-
-   
-    
+    var nfc1 = req.body.id; // getting the NFC ID from the Python code
+    nfc = nfc1;
 
     // config for your database
-    
 
     // connect to your database
     sql.connect(config, function (err) {
-    
-        if (err) console.log(err);
+        if (err) {
+            console.log(err);
+            return res.status(500).send("Internal Server Error");
+        }
 
         // create Request object
         var request = new sql.Request();
 
-    // SQL query that gets the records
-        request.query("SELECT is_present FROM dbo.SignInOut WHERE rgu_id = "+ nfc , function (err, recordset) {
-            if (err) { 
-                
-                console.log("The Id with serial number "+nfc+"does not exist");
-                return;
-                
-                
-                }
-            console.log(recordset.recordset[0].is_present)
-            if (recordset.recordset[0].is_present == false){
-
-                request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = "+ nfc, function(err, line){
-                    if (err) throw err;
-                    console.log(line)
-                } )
-
+        // SQL query that gets the records
+        request.query("SELECT is_present FROM dbo.SignInOut WHERE rgu_id = " + nfc, function (err, recordset) {
+            if (err) {
+                console.log("The ID with serial number " + nfc + " does not exist");
+                return res.status(404).send("NFC Tag Not Found");
             }
-            else{
-                request.query("UPDATE dbo.SignInOut SET is_present = 'false' WHERE rgu_id = "+ nfc, function(err, line){
+
+            if (recordset.recordset[0].is_present == false) {
+                request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = " + nfc, function (err, line) {
                     if (err) throw err;
-                    console.log(line)
-                } )
+                    console.log(line);
+                });
+            } else {
+                request.query("UPDATE dbo.SignInOut SET is_present = 'false' WHERE rgu_id = " + nfc, function (err, line) {
+                    if (err) throw err;
+                    console.log(line);
+                });
             }
-            ;})
-           
-       
+        });
+
+        res.status(200).send("Done");
     });
-    res.status(200).send("done")
 });
+
 
 
 console.log("the server now running")

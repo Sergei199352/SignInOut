@@ -112,10 +112,11 @@ app.post("/read", (req, res) => {
         // SQL query that gets the records
         request.query("SELECT is_present FROM dbo.SignInOut WHERE rgu_id = " + nfc, function (err, recordset) {
             if (err) {
-                name = recordset.recordset[0].Name;
+                
                 console.log("The ID with serial number " + nfc + " does not exist");
                 return res.status(404).send("NFC Tag Not Found");
             }
+            name = recordset.recordset[0].Name;
 
             if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) {
                 request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = " + nfc, function (err, line) {

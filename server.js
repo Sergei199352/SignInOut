@@ -114,7 +114,7 @@ app.post("/read", (req, res) => {
                 return res.status(404).send("NFC Tag Not Found");
             }
 
-            if (recordset.recordset[0].is_present == false) {
+            if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) {
                 request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = " + nfc, function (err, line) {
                     if (err) throw err;
                     console.log(line);
@@ -130,6 +130,7 @@ app.post("/read", (req, res) => {
         res.status(200).send("Done");
     });
 });
+
 
 
 

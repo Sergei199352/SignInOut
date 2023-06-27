@@ -97,7 +97,7 @@ app.post("/remove", function(req, res){
         else{
             request.input('remID', sql.VarChar, remId)
             // delete query
-        request.query(" DELETE FROM dbo.SignInOut WHERE rgu_id = '@remID'", function(err, result){
+        request.query(" DELETE FROM dbo.SignInOut WHERE Name = '@remID'", function(err, result){
             if (err){
                 console.log( "the record has not been deleted"+remId)
                 console.log(err)

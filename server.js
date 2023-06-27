@@ -149,7 +149,7 @@ app.post("/submit", (req, res) =>{
         function(err, result){
             if (err){
                 console.log('error '+ err)
-                res.status(500).send('An error occurred while inserting the data.');
+                res.status(500).send('An error occurred while inserting the data.'+err);
 
             }
             else{

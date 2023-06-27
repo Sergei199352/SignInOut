@@ -82,6 +82,7 @@ app.get("/new", function(req, res){
 app.post("/remove", function(req, res){
     // get the data from the page
     const remId = req.body.remId
+    console.log(remId)
 
 
     // request

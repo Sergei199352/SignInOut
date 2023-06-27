@@ -86,7 +86,8 @@ app.post("/remove", function(req, res){
 
 
     // request
-    const requset = new sql.Request();
+    const request = new sql.Request();
+    request.input('remID', sql.VarChar, remId)
     //connect to the database
     sql.connect(config, function(err){
         if (err){
@@ -95,7 +96,7 @@ app.post("/remove", function(req, res){
         }
         else{
             // delete query
-        requset.query(" DELETE FROM dbo.SignInOut WHERE rgu_id = '${remId}'", function(err){
+        request.query(" DELETE FROM dbo.SignInOut WHERE rgu_id = '@remID'", function(err){
             if (err){
                 console.log( "the record has not been deleted"+remId)
                 console.log(err)

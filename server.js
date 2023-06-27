@@ -115,6 +115,7 @@ app.post("/read", (req, res) => {
 
         // create Request object
         var request = new sql.Request();
+        console.log(nfc)
 
         // SQL query that gets the records
         request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id = " + nfc, function (err, recordset) {

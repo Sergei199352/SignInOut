@@ -9,6 +9,9 @@ try:
     while True:
         print("Hold a tag near the reader")
         id, text = reader.read()
+
+        strId = str(id)
+
         print("ID: %s\nText: %s" % (id,text))
         nfc = {'id':id,
                 'text':text}

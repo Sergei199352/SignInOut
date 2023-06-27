@@ -49,18 +49,23 @@ body {
   }
   
 /*-------------------------------- Form container style---------------------- */
+/* Form container style */
 .container {
   margin: 50px auto;
-  width: 400px;
+  width: 600px;
   padding: 20px;
   background-color: #f2f2f2;
   border-radius: 5px;
+  margin-bottom: 50px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Form title style */
 h1 {
   color: #003C71;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 /* Form input label style */
@@ -68,17 +73,37 @@ label {
   display: block;
   margin-bottom: 5px;
   color: #003C71;
+  font-weight: bold;
 }
 
 /* Form input style */
 input[type="text"],
 input[type="email"],
 input[type="checkbox"] {
-  width: 100%;
-  padding: 5px;
+  width: 50%;
+  padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Form field wrapper style */
+.form-field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Form field label style */
+.form-field label {
+  flex-basis: 50%;
+}
+
+/* Form field input style */
+.form-field input {
+  flex-basis: 50%;
 }
 
 /* Form submit button style */
@@ -94,3 +119,9 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #001D3D;
 }
+
+/* Add space all around the content */
+body {
+  margin: 50px;
+}
+

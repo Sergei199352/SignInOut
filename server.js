@@ -115,7 +115,7 @@ app.post("/read", (req, res) => {
 
         // create Request object
         var request = new sql.Request();
-        console.log(nfc)
+       
 
         // SQL query that gets the records
         request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id = " + nfc, function (err, recordset) {
@@ -124,7 +124,7 @@ app.post("/read", (req, res) => {
                 console.log(err);
                 return res.status(404).send("NFC Tag Not Found");
             }
-           
+            console.log(recordset.recordset)
 
             if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) {
 

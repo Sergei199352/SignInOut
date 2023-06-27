@@ -75,6 +75,38 @@ app.get("/new", function(req, res){
 
 
 //------------Post Functions-------------------
+
+//remove user post
+
+
+app.post("/remove", function(req, res){
+    // get the data from the page
+    const remId = req.body.remId
+
+
+    // request
+    const requset = new sql.Request();
+    //connect to the database
+    sql.connect(config);
+    // delete query
+    requset.query(" DELETE FROM dbo.SignInOut WHERE rgu_id = '${remId}'", function(err){
+        if (err){
+            console.log( "the record has not been deleted"+remId)
+            console.log(err)
+        }
+    });
+
+
+
+
+
+
+
+
+
+})
+
+
 // new user post function
 
 app.post("/submit", (req, res) =>{

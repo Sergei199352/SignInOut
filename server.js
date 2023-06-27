@@ -126,6 +126,7 @@ app.post("/read", (req, res) => {
             }
             console.log(recordset.recordset)
 
+            if (recordset.recordset != 0){
             if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) {
 
                 name = recordset.recordset[0].Name;
@@ -157,7 +158,7 @@ app.post("/read", (req, res) => {
                     }
                     console.log(line);
                 });
-            }
+            };}
         });
 
         res.status(200).send("Done");

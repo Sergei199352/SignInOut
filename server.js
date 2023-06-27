@@ -3,6 +3,11 @@ var bodyParser = require('body-parser');
 var sql = require("mssql");//making
 var app = express();
 
+const multer = require('multer');
+const csv = require('csv-parser');
+const fs = require('fs');
+const upload = multer({ dest: 'uploads/' });
+
 var nfc = "";
 var ressql = {};
 var data = [];
@@ -57,7 +62,9 @@ app.get("/", function(req, res){
 
 });
 // renders the page that recieves the nfc data
-
+app.get("/load", function(req, res){
+    res.render("pages/upload")
+})
 
 
 
@@ -113,7 +120,7 @@ app.post("/read", (req, res) => {
         request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id = " + nfc, function (err, recordset) {
             if (err) {
                 
-                console.log("The ID with serial number " + nfc + " does not exist");
+                console.log(err);
                 return res.status(404).send("NFC Tag Not Found");
             }
            
@@ -155,6 +162,71 @@ app.post("/read", (req, res) => {
         res.status(200).send("Done");
     });
 });
+
+
+app.post('/upload', upload.single('file'), (req, res) => {
+    // Check if a file was uploaded
+    if (!req.file) {
+      return res.status(400).send('No file uploaded.');
+    }
+  
+    const file = req.file;
+  
+    // Check if the file has a valid filename
+    if (!file.originalname.endsWith('.csv')) {
+      return res.status(400).send('Invalid file.');
+    }
+  
+    // Read the data from the CSV file
+    const results = [];
+    fs.createReadStream(file.path)
+      .pipe(csv())
+      .on('data', (data) => results.push(data))
+      .on('end', () => {
+        // Remove the temporary uploaded file
+        fs.unlinkSync(file.path);
+  
+        // Do something with the data
+        // TODO used the parsed data to insert it into a table
+        console.log(results);
+        console.log(Object.keys(results[0]));
+        // sql.connect(config, function (err) {
+        //     if (err) {
+        //         console.log(err);
+        //         return res.status(500).send("Internal Server Error");
+        //     }
+
+        // var swqlRes = results[0]
+        // var req = new sql.Request()
+
+        
+        // req.query("INSERT INTO dbo.SignInOut (rgu_id,Name, Email, Building, Priority ,is_present, Aid, Marshal, Wheelchair) VALUES   ('"+swqlRes.ID+"','"
+        // +swqlRes.Name+"','"+swqlRes.Email+"','"+swqlRes.Building+"','"+swqlRes.Priority+"','"+swqlRes.is_present+"','"+swqlRes.Aid+"','"+swqlRes.Marshal+"','"+swqlRes.Wheelchair+"')", 
+        // function(err,line){
+        //     if (err){
+        //         console.log(err)
+
+        //     }
+        //     console.log(line)
+        // });
+
+
+
+
+        // });
+        // Remove the temporary uploaded file
+      fs.unlink(file.path, (err) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log('Temporary file deleted');
+      });
+
+
+  
+        res.status(200).send('File uploaded and processed successfully.');
+      });
+  });
 
 
 

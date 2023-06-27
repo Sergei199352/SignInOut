@@ -89,25 +89,24 @@ app.post("/remove", function(req, res){
     const request = new sql.Request();
     
     //connect to the database
-    sql.connect(config, function(err){
-        if (err){
-            console.log(err)
+    sql.connect(config, function(err) {
+        if (err) {
+            console.log(err);
             res.status(500).send('An error occurred while removing the record.');
         }
-        
-        request.input('remID', sql.VarChar, remId)
-            // delete query
-        request.query(" DELETE FROM dbo.SignInOut WHERE Name = '@remID'", function(err, result){
-            if (err){
-                console.log( "the record has not been deleted"+remId)
-                console.log(err)
+    
+        var request = new sql.Request();
+        request.input('remID', sql.VarChar, remId);
+        // delete query
+        request.query("DELETE FROM dbo.SignInOut WHERE Name = @remID", function(err, result) {
+            if (err) {
+                console.log("The record has not been deleted: " + remId);
+                console.log(err);
                 res.status(500).send('An error occurred while removing the record.');
-            }
-            else{
-                console.log(result)
+            } else {
+                console.log(result);
                 res.status(200).send('Data deleted successfully.');
             }
-            
         });
     });
     

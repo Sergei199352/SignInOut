@@ -100,7 +100,7 @@ app.post("/arraysum", (req, res) => {
 // post that recievews the nfc data from the python code
 app.post("/read", (req, res) => {
     var nfc1 = req.body.id; // getting the NFC ID from the Python code
-    nfc = nfc1;
+    nfc = String(nfc1);
     var data = "";
     var name = "";
 

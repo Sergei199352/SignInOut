@@ -39,7 +39,15 @@
       <br>
       <button type="submit">Submit</button>
     </form>
-<h1> Remove User</h1>
+
+
+
+  <% } else { %>
+    <p>The data variable does not exist.</p>
+  <% } %>
+
+
+  <h1> Remove User</h1>
 <form method="POST" action="/remove">
 
 <label for="remId"> User ID </label>
@@ -49,10 +57,5 @@
 
 
 </form>
-
-
-  <% } else { %>
-    <p>The data variable does not exist.</p>
-  <% } %>
 </body>
 </html>

@@ -35,7 +35,7 @@
                   <% for (let key in recordset) {
                     if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
                       <% if (key === 'Email') { %>
-                        <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>">Email</a></td>
+                        <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>"><%= recordset[Email] %></a></td>
                       <% } else { %>
                         <td><%= recordset[key] %></td>
                       <% } %>
@@ -68,7 +68,7 @@
                   <% for (let key in recordset) {
                     if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
                       <% if (key === 'Email') { %>
-                        <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>">Email</a></td>
+                        <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>"><%= recordset[Email] %></a></td>
                       <% } else { %>
                         <td><%= recordset[key] %></td>
                       <% } %>
@@ -101,7 +101,7 @@
                   <% for (let key in recordset) { %>
                     <% if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
                       <% if (key === 'Email') { %>
-                        <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>">Email</a></td>
+                        <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>"> <%= recordset[Email] %></a></td>
                       <% } else { %>
                         <td><%= recordset[key] %></td>
                       <% } %>

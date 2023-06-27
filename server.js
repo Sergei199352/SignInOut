@@ -31,6 +31,7 @@ var config = {
 
 let NFCdata = '';
 let trarray = [];
+let noTag = '';
 
 
 app.get("/", function(req, res){
@@ -64,6 +65,10 @@ app.get("/", function(req, res){
 // renders the page that recieves the nfc data
 app.get("/load", function(req, res){
     res.render("pages/upload")
+})
+
+app.get("/new", function(req, res){
+    res.render("pages/newUser",{noTag} )
 })
 
 
@@ -123,8 +128,11 @@ app.post("/read", (req, res) => {
                 
                 console.log(err);
                 return res.status(404).send("NFC Tag Not Found");
+
             }
             console.log(recordset.recordset)
+
+            
 
             if (recordset.recordset != 0){
             if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) {
@@ -159,6 +167,9 @@ app.post("/read", (req, res) => {
                     console.log(line);
                 });
             };}
+            else{
+                noTag = nfc
+            }
         });
 
         res.status(200).send("Done");

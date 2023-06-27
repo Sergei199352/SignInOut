@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Page</title>
+</head>
+<body>
+  <h1>Form</h1>
+  <% if (noTag) { %>
+    <h1><%= noTag %> </h1>
+    <form method="POST" action="/submit">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <br>
+      <label for="building">Building:</label>
+      <input type="text" id="building" name="building" required>
+      <br>
+      <label for="priority">Priority:</label>
+      <input type="text" id="priority" name="priority" required>
+      <br>
+      <label for="is_present">Is Present:</label>
+      <input type="checkbox" id="is_present" name="is_present">
+      <br>
+      <label for="aid">Aid:</label>
+      <input type="text" id="aid" name="aid" required>
+      <br>
+      <label for="marshal">Marshal:</label>
+      <input type="text" id="marshal" name="marshal" required>
+      <br>
+      <label for="wheelchair">Wheelchair:</label>
+      <input type="text" id="wheelchair" name="wheelchair" required>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+  <% } else { %>
+    <p>The data variable does not exist.</p>
+  <% } %>
+</body>
+</html>

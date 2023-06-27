@@ -48,3 +48,49 @@ body {
     color: #003C71;
   }
   
+/*-------------------------------- Form container style---------------------- */
+.container {
+  margin: 50px auto;
+  width: 400px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+/* Form title style */
+h1 {
+  color: #003C71;
+  text-align: center;
+}
+
+/* Form input label style */
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #003C71;
+}
+
+/* Form input style */
+input[type="text"],
+input[type="email"],
+input[type="checkbox"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+/* Form submit button style */
+button[type="submit"] {
+  background-color: #003C71;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #001D3D;
+}

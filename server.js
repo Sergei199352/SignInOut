@@ -227,7 +227,7 @@ app.post("/read", (req, res) => {
        
 
         // SQL query that gets the records
-        request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id = " + nfc, function (err, recordset) {
+        request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id = " + String(nfc), function (err, recordset) {
             if (err) {
                 
                 console.log(err);
@@ -243,7 +243,7 @@ app.post("/read", (req, res) => {
 
                 name = recordset.recordset[0].Name;
                 console.log("the name testing "+ recordset.recordset[0].is_present+" " +recordset.recordset[0].Name)
-                request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = " + nfc, function (err, line) {
+                request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = " + String(nfc), function (err, line) {
                     if (err) throw err;
                     console.log(line);
                 });
@@ -258,7 +258,7 @@ app.post("/read", (req, res) => {
             } else {
                 name = recordset.recordset[0].Name;
                 console.log("the name testing "+ recordset.recordset[0].is_present+" " +recordset.recordset[0].Email)
-                request.query("UPDATE dbo.SignInOut SET is_present = 'false' WHERE rgu_id = " + nfc, function (err, line) {
+                request.query("UPDATE dbo.SignInOut SET is_present = 'false' WHERE rgu_id = " + String(nfc), function (err, line) {
                     if (err) throw err;
                     request.query("INSERT INTO dbo.timeLog (Name, InOut ,time) VALUES ('" + recordset.recordset[0].Name + "',0, GETDATE())"), function (err, line){
                         if (err){

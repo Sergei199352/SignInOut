@@ -13,7 +13,7 @@ try:
         strId = str(id)
 
         print("ID: %s\nText: %s" % (id,text))
-        nfc = {'id':id,
+        nfc = {'id':strId,
                 'text':text}
         res = requests.post('https://rguappsign.azurewebsites.net/read', json=nfc)
         print(res)

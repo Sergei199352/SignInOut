@@ -75,6 +75,65 @@ app.get("/new", function(req, res){
 
 
 //------------Post Functions-------------------
+// new user post function
+
+app.post("/submit", (req, res) =>{
+    const rguId = noTag
+    const name = req.body.name;
+  const email = req.body.email;
+  const building = req.body.building;
+  const priority = req.body.priority;
+  const isPresent = req.body.is_present === 'on' ? true : false;
+  const aid = req.body.aid === 'on' ? true : false;
+  const marshal = req.body.marshal === 'on' ? true : false;
+  const wheelchair = req.body.wheelchair === 'on' ? true : false;
+
+  // creating the sql insert
+  sql.connect(config, (err) => {
+    if (err){
+        console.log('Error connecting to MSSQL:', err)
+        res.status(500).send('An error occurred while connecting to the database.');
+        return
+    }
+    // create a new request
+    const request = new sql.Request();
+    request.input('rguId', sql.VarChar, rguId)
+    request.input('name', sql.VarChar, name);
+    request.input('email', sql.VarChar, email);
+    request.input('building', sql.VarChar, building);
+    request.input('priority', sql.VarChar, priority);
+    request.input('isPresent', sql.Bit, isPresent);
+    request.input('aid', sql.Bit, aid);
+    request.input('marshal', sql.Bit, marshal);
+    request.input('wheelchair', sql.Bit, wheelchair);
+
+    request.query( 
+        "INSERT INTO dbo.SignInOut (rgu_id, Name, Email, Building, Priority, is_present, Aid, Marshal, Wheelchair) VALUES(@rguId, @name, @email, @building, @priority, @isPresent, @aid, @marshal, @wheelchair)",
+        function(err, result){
+            if (err){
+                console.log('error '+ err)
+                res.status(500).send('An error occurred while inserting the data.');
+
+            }
+            else{
+                console.log('Data inserted successfully.');
+                res.status(200).send('Data inserted successfully.');
+                console.log(result)
+            }
+
+
+        }
+    )
+
+
+  })
+
+})
+
+
+
+
+
 
 // this get function was used to test for the communication between the endpoint and the python code
 app.post("/arraysum", (req, res) => {

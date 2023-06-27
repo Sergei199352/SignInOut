@@ -94,8 +94,8 @@ app.post("/remove", function(req, res){
             console.log(err)
             res.status(500).send('An error occurred while removing the record.');
         }
-        else{
-            request.input('remID', sql.VarChar, remId)
+        
+        request.input('remID', sql.VarChar, remId)
             // delete query
         request.query(" DELETE FROM dbo.SignInOut WHERE Name = '@remID'", function(err, result){
             if (err){
@@ -108,7 +108,7 @@ app.post("/remove", function(req, res){
                 res.status(200).send('Data deleted successfully.');
             }
             
-        });}
+        });
     });
     
     

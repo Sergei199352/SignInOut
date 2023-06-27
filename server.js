@@ -93,7 +93,12 @@ app.post("/remove", function(req, res){
         if (err){
             console.log( "the record has not been deleted"+remId)
             console.log(err)
+            res.status(500).send('An error occurred while removing the record.');
         }
+        else{
+            res.status(200).send('Data deleted successfully.');
+        }
+        
     });
 
 

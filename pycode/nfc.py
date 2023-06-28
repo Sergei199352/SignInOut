@@ -44,7 +44,7 @@ def read_nfc_data():
 
         print("ID: %s\nText: %s" % (id, text))
         nfc = {'id': strId, 'text': text}
-        res = requests.post('https://rguappsign.azurewebsites.net/read', json=nfc)
+        res = requests.post('https://rguappsign.azurewebsites.net/read#', json=nfc)
         print(res)
 
         if res.ok:

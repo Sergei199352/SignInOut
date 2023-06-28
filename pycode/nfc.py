@@ -31,6 +31,8 @@ def establish_internet_connection():
         except requests.ConnectionError:
             pass
         print("No internet connection. Retrying in 5 seconds...")
+        pygame.mixer.music.load(error_sound_file)
+        pygame.mixer.music.play()
         sleep(2)
 
 def read_nfc_data():

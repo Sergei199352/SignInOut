@@ -4,15 +4,17 @@ import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import requests
 import pygame
-import pygame.time
+import os
 
 # Initialize pygame
 pygame.mixer.init()
 
-# Load default sounds
-connected_sound = pygame.mixer.Sound(pygame.mixer.get_busy())
-response_sound = pygame.mixer.Sound(pygame.mixer.stop())
-error_sound = pygame.mixer.Sound(pygame.mixer.pause())
+# Get the current directory path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Set the path to the sound files
+success_sound_file = os.path.join(current_dir, "5faca65f277a553.mp3")
+error_sound_file = os.path.join(current_dir, "wide-design-z_uk-oshibki-windows.mp3")
 
 reader = SimpleMFRC522()
 
@@ -22,9 +24,8 @@ def establish_internet_connection():
             response = requests.get('https://www.google.com')
             if response.status_code == 200:
                 print("Internet connection established.")
-                connected_sound.play()
-                pygame.time.wait(1000)  # Wait for 1 second
-                connected_sound.stop()
+                pygame.mixer.music.load(success_sound_file)
+                pygame.mixer.music.play()
                 break
         except requests.ConnectionError:
             pass
@@ -42,15 +43,13 @@ def read_nfc_data():
         nfc = {'id': strId, 'text': text}
         res = requests.post('https://rguappsign.azurewebsites.net/read', json=nfc)
         print(res)
-#somehow doesnt work
+
         if res.ok:
-            response_sound.play()
-            pygame.time.wait(1000)  # Wait for 1 second
-            response_sound.stop()
+            pygame.mixer.music.load(success_sound_file)
+            pygame.mixer.music.play()
         else:
-            error_sound.play()
-            pygame.time.wait(1000)  # Wait for 1 second
-            error_sound.stop()
+            pygame.mixer.music.load(error_sound_file)
+            pygame.mixer.music.play()
 
         sleep(1)
 

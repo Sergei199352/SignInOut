@@ -42,7 +42,7 @@ def read_nfc_data():
         nfc = {'id': strId, 'text': text}
         res = requests.post('https://rguappsign.azurewebsites.net/read', json=nfc)
         print(res)
-
+#somehow doesnt work
         if res.ok:
             response_sound.play()
             pygame.time.wait(1000)  # Wait for 1 second

@@ -15,6 +15,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 # Set the path to the sound files
 success_sound_file = os.path.join(current_dir, "5faca65f277a553.mp3")
 error_sound_file = os.path.join(current_dir, "wide-design-z_uk-oshibki-windows.mp3")
+noconnection_sound_file = os.path.join(current_dir, "wide-design-z_uk-oshibki-windows.mp3")
 
 reader = SimpleMFRC522()
 

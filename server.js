@@ -171,6 +171,7 @@ app.post("/submit", (req, res) =>{
                 console.log('Data inserted successfully.');
                 res.status(200).send('Data inserted successfully.');
                 console.log(result)
+                noTag = 0
             }
 
 

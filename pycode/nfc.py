@@ -23,7 +23,7 @@ def establish_internet_connection():
     while True:
         try:
             response = requests.get('https://www.google.com')
-            pygame.mixer.music.load(error_sound_file)
+            pygame.mixer.music.load(waiting)
             pygame.mixer.music.play()
             if response.status_code == 200:
                 pygame.mixer.music.stop()

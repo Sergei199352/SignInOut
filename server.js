@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 var config = {
     user: 'sergey',
-    password: 'Muskula.123',
+    password: 'pASSWORD.123',
     server: 'dbsserver.database.windows.net', 
     database: 'registerDBS' 
 };

@@ -31,7 +31,7 @@ def establish_internet_connection():
             if response.status_code == 200:
                 pygame.mixer.music.stop()
                 print("Internet connection established.")
-                pygame.mixer.music.load(success_sound_file)
+                pygame.mixer.music.load(waitingShort)
                 pygame.mixer.music.play()
                 break
         except requests.ConnectionError:

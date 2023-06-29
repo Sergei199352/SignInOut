@@ -15,16 +15,19 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 # Set the path to the sound files
 success_sound_file = os.path.join(current_dir, "5faca65f277a553.mp3")
 error_sound_file = os.path.join(current_dir, "wide-design-z_uk-oshibki-windows.mp3")
-noconnection_sound_file = os.path.join(current_dir, "wide-design-z_uk-oshibki-windows.mp3")
+waiting_sound_file = os.path.join(current_dir, "vagner-polet-valkirijj.mp3")
 
 reader = SimpleMFRC522()
 
 def establish_internet_connection():
+    pygame.mixer.music.load(waiting_sound_file)
+    pygame.mixer.music.play(-1)  # Play the waiting sound in a loop
     while True:
         try:
             response = requests.get('https://www.google.com')
             if response.status_code == 200:
                 print("Internet connection established.")
+                pygame.mixer.music.stop()  # Stop the waiting sound
                 pygame.mixer.music.load(success_sound_file)
                 pygame.mixer.music.play()
                 break
@@ -33,7 +36,7 @@ def establish_internet_connection():
         print("No internet connection. Retrying in 5 seconds...")
         pygame.mixer.music.load(error_sound_file)
         pygame.mixer.music.play()
-        sleep(2)
+        sleep(5)
 
 def read_nfc_data():
     while True:

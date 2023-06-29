@@ -16,15 +16,18 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 success_sound_file = os.path.join(current_dir, "5faca65f277a553.mp3")
 error_sound_file = os.path.join(current_dir, "wide-design-z_uk-oshibki-windows.mp3")
 waiting = os.path.join(current_dir, "vagner-polet-valkirijj.mp3")
+waitingShort = os.path.join(current_dir, "19f925ab5a5e735.mp3")
+
 
 reader = SimpleMFRC522()
 
 def establish_internet_connection():
     while True:
         try:
-            response = requests.get('https://www.google.com')
             pygame.mixer.music.load(waiting)
             pygame.mixer.music.play()
+            response = requests.get('https://www.google.com')
+            
             if response.status_code == 200:
                 pygame.mixer.music.stop()
                 print("Internet connection established.")

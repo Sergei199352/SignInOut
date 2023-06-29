@@ -19,21 +19,30 @@ noconnection_sound_file = os.path.join(current_dir, "wide-design-z_uk-oshibki-wi
 
 reader = SimpleMFRC522()
 
+import socket
+import pygame.mixer
+from time import sleep
+
+success_sound_file = "success_sound.wav"
+error_sound_file = "error_sound.wav"
+
 def establish_internet_connection():
     while True:
         try:
-            response = requests.get('https://www.google.com')
-            if response.status_code == 200:
-                print("Internet connection established.")
-                pygame.mixer.music.load(success_sound_file)
-                pygame.mixer.music.play()
-                break
-        except requests.ConnectionError:
+            # Create a socket and attempt to connect to a remote host
+            # in this case, we'll use Google's DNS server
+            socket.create_connection(('8.8.8.8', 53))
+            print("Internet connection established.")
+            pygame.mixer.music.load(success_sound_file)
+            pygame.mixer.music.play()
+            break
+        except socket.error:
             pass
         print("No internet connection. Retrying in 5 seconds...")
         pygame.mixer.music.load(error_sound_file)
         pygame.mixer.music.play()
-        sleep(2)
+        sleep(5)
+
 
 def read_nfc_data():
     while True:

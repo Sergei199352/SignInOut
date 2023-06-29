@@ -60,7 +60,7 @@ def read_nfc_data():
             pygame.mixer.music.load(error_sound_file)
             pygame.mixer.music.play()
 
-        sleep(1)
+        sleep(5)
 
 try:
     establish_internet_connection()

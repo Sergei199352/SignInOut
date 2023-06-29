@@ -126,6 +126,8 @@ app.post("/remove", function(req, res){
 // new user post function
 
 app.post("/submit", (req, res) =>{
+
+    // getting the data from the database
     const rguId = noTag
     const name = req.body.name;
   const email = req.body.email;
@@ -145,6 +147,8 @@ app.post("/submit", (req, res) =>{
     }
     // create a new request
     const request = new sql.Request();
+
+    // setting the data to sql input so to avoid any data transformation errors
     request.input('rguId', sql.VarChar, rguId)
     request.input('name', sql.VarChar, name);
     request.input('email', sql.VarChar, email);
@@ -216,7 +220,7 @@ app.post("/read", (req, res) => {
     var data = "";
     var name = "";
 
-    // config for your database
+    
 
     // connect to your database
     sql.connect(config, function (err) {
@@ -227,29 +231,33 @@ app.post("/read", (req, res) => {
 
         // create Request object
         var request = new sql.Request();
+        // setting the varchar datatype sql input to avoid conversion erros
         request.input('rguId', sql.VarChar, nfc)
 
         // SQL query that gets the records
         request.query("SELECT * FROM dbo.SignInOut WHERE rgu_id =@rguId " , function (err, recordset) {
             if (err) {
                 
-                console.log(err);
+                console.log(err); // getting the error dislpayed on the console
                 return res.status(404).send("NFC Tag Not Found");
 
             }
-            console.log(recordset.recordset)
+            console.log(recordset.recordset) // geting the data displayed TESTING
 
             
 
-            if (recordset.recordset != 0){
-            if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) {
-
+            if (recordset.recordset != 0){ // avoiding the empty array causing errors
+            if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) { // checking if the is present field is false
+                // the name variable for the timelog
                 name = recordset.recordset[0].Name;
                 console.log("the name testing "+ recordset.recordset[0].is_present+" " +recordset.recordset[0].Name)
+
+                // the query that updates the users presnece to true if its false
                 request.query("UPDATE dbo.SignInOut SET is_present = 'true' WHERE rgu_id = @rguId " , function (err, line) {
                     if (err) throw err;
                     console.log(line);
                 });
+                // adds the access data to the timelog 
                 request.query("INSERT INTO dbo.timeLog (Name, InOut ,time) VALUES ('" + recordset.recordset[0].Name + "',1, GETDATE())"), function (err, line){
                     if (err){
                         console.log(err);
@@ -259,8 +267,12 @@ app.post("/read", (req, res) => {
 
                 }
             } else {
+                // the name variable for the timelog
                 name = recordset.recordset[0].Name;
+                // testing console log
                 console.log("the name testing "+ recordset.recordset[0].is_present+" " +recordset.recordset[0].Email)
+
+                // setting the presence to false 
                 request.query("UPDATE dbo.SignInOut SET is_present = 'false' WHERE rgu_id = @rguId" , function (err, line) {
                     if (err) throw err;
                     request.query("INSERT INTO dbo.timeLog (Name, InOut ,time) VALUES ('" + recordset.recordset[0].Name + "',0, GETDATE())"), function (err, line){
@@ -275,6 +287,7 @@ app.post("/read", (req, res) => {
                 });
             };}
             else{
+                // if there is no tag in the database then it will be assigned to the global variable to be used in the new user page
                 noTag = nfc
             }
         });
@@ -283,70 +296,111 @@ app.post("/read", (req, res) => {
     });
 });
 
+// --------------------- this code was meant to be ading users using a csv file followitn the same structure of the database it still requires a loop ----------
+// app.post('/upload', upload.single('file'), (req, res) => {
+//     // Check if a file was uploaded
+//     if (!req.file) {
+//       return res.status(400).send('No file uploaded.');
+//     }
+  
+//     const file = req.file;
+  
+//     // Check if the file has a valid filename
+//     if (!file.originalname.endsWith('.csv')) {
+//       return res.status(400).send('Invalid file.');
+//     }
+  
+//     // Read the data from the CSV file
+//     const results = [];
+//     fs.createReadStream(file.path)
+//       .pipe(csv())
+//       .on('data', (data) => results.push(data))
+//       .on('end', () => {
+//         // Remove the temporary uploaded file
+//         fs.unlinkSync(file.path);
+  
+//         // Do something with the data
+//         // TODO used the parsed data to insert it into a table
+//         console.log(results);
+//         console.log(Object.keys(results[0]));
+//         // sql.connect(config, function (err) {
+//         //     if (err) {
+//         //         console.log(err);
+//         //         return res.status(500).send("Internal Server Error");
+//         //     }
 
-app.post('/upload', upload.single('file'), (req, res) => {
-    // Check if a file was uploaded
-    if (!req.file) {
-      return res.status(400).send('No file uploaded.');
-    }
-  
-    const file = req.file;
-  
-    // Check if the file has a valid filename
-    if (!file.originalname.endsWith('.csv')) {
-      return res.status(400).send('Invalid file.');
-    }
-  
-    // Read the data from the CSV file
-    const results = [];
-    fs.createReadStream(file.path)
-      .pipe(csv())
-      .on('data', (data) => results.push(data))
-      .on('end', () => {
-        // Remove the temporary uploaded file
-        fs.unlinkSync(file.path);
-  
-        // Do something with the data
-        // TODO used the parsed data to insert it into a table
-        console.log(results);
-        console.log(Object.keys(results[0]));
-        // sql.connect(config, function (err) {
-        //     if (err) {
-        //         console.log(err);
-        //         return res.status(500).send("Internal Server Error");
-        //     }
-
-        // var swqlRes = results[0]
-        // var req = new sql.Request()
+//         // var swqlRes = results[0]
+//         // var req = new sql.Request()
 
         
-        // req.query("INSERT INTO dbo.SignInOut (rgu_id,Name, Email, Building, Priority ,is_present, Aid, Marshal, Wheelchair) VALUES   ('"+swqlRes.ID+"','"
-        // +swqlRes.Name+"','"+swqlRes.Email+"','"+swqlRes.Building+"','"+swqlRes.Priority+"','"+swqlRes.is_present+"','"+swqlRes.Aid+"','"+swqlRes.Marshal+"','"+swqlRes.Wheelchair+"')", 
-        // function(err,line){
-        //     if (err){
-        //         console.log(err)
+//         // req.query("INSERT INTO dbo.SignInOut (rgu_id,Name, Email, Building, Priority ,is_present, Aid, Marshal, Wheelchair) VALUES   ('"+swqlRes.ID+"','"
+//         // +swqlRes.Name+"','"+swqlRes.Email+"','"+swqlRes.Building+"','"+swqlRes.Priority+"','"+swqlRes.is_present+"','"+swqlRes.Aid+"','"+swqlRes.Marshal+"','"+swqlRes.Wheelchair+"')", 
+//         // function(err,line){
+//         //     if (err){
+//         //         console.log(err)
 
-        //     }
-        //     console.log(line)
-        // });
-
-
+//         //     }
+//         //     console.log(line)
+//         // });
 
 
-        // });
-        // Remove the temporary uploaded file
-      fs.unlink(file.path, (err) => {
-        if (err) {
-          console.log(err);
-        }
-        console.log('Temporary file deleted');
-      });
+
+
+//         // });
+//         // Remove the temporary uploaded file
+//       fs.unlink(file.path, (err) => {
+//         if (err) {
+//           console.log(err);
+//         }
+//         console.log('Temporary file deleted');
+//       });
 
 
   
-        res.status(200).send('File uploaded and processed successfully.');
-      });
-  });
+//         res.status(200).send('File uploaded and processed successfully.');
+//       });
+//   });
+
+    // 24h reset 
+
+    // function to refresh the records every midnight
+    function resetIsPresentField() {
+        // Get the current date and time
+        var now = new Date();
+        
+        // Check if it's midnight
+        if (now.getHours() === 0 ) {
+          // Connect to the database
+          sql.connect(config, function(err) {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            
+            // Create a new request
+            var request = new sql.Request();
+            
+            // Update all records in the table to set is_present to false
+            request.query("UPDATE dbo.SignInOut SET is_present = 'false'", function(err, result) {
+              if (err) {
+                console.log(err);
+                return;
+              }
+              
+              console.log("is_present field reset to false for all records.");
+            });
+          });
+        }
+      }
+      
+      // Schedule the resetIsPresentField function to run every midnight
+      var midnight = new Date();
+      midnight.setHours(24, 0, 0, 0); // Set the time to midnight
+      var timeUntilMidnight = midnight.getTime() - Date.now(); // Calculate the time until midnight
+      setInterval(resetIsPresentField, timeUntilMidnight);
+      
+
+
 
 
 

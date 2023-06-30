@@ -31,7 +31,7 @@ var config = {
 
 let NFCdata = '';
 let trarray = [];
-let noTag = 23;
+let noTag = '55';
 
 
 app.get("/", function(req, res){

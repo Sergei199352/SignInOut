@@ -31,7 +31,7 @@ var config = {
 
 let NFCdata = '';
 let trarray = [];
-let noTag = '55';
+let noTag = '';
 
 
 app.get("/", function(req, res){
@@ -164,14 +164,14 @@ app.post("/submit", (req, res) =>{
         function(err, result){
             if (err){
                 console.log('error '+ err)
-                res.status(500).send('An error occurred while inserting the data.'+err);
+                res.status(500).render('pages/error_page', {errorMessage:'Appologies but you encountered the following error while inserting into the database', error:err});
 
             }
             else{
                 console.log('Data inserted successfully.');
                 res.status(200).render('pages/record_added', {message:'Record added successfully press the home button to return to the home page'})
                 console.log(result)
-                //noTag = 0
+                noTag = 0
                 
             }
 

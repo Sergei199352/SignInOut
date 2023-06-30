@@ -128,7 +128,7 @@ app.post("/remove", function(req, res){
 app.post("/submit", (req, res) =>{
 
     // getting the data from the database
-    const rguId = noTag
+    const rguId = 23
     const name = req.body.name;
   const email = req.body.email;
   const building = req.body.building;
@@ -169,10 +169,10 @@ app.post("/submit", (req, res) =>{
             }
             else{
                 console.log('Data inserted successfully.');
-                res.status(200).send('Data inserted successfully.');
+                res.status(200).render('pages/record_added', {message:'Record added successfully press the home button to return to the home page'})
                 console.log(result)
-                noTag = 0
-                res.redirect("/")
+                //noTag = 0
+                
             }
 
 

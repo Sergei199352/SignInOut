@@ -31,7 +31,7 @@ var config = {
 
 let NFCdata = '';
 let trarray = [];
-let noTag = '';
+let noTag = 23;
 
 
 app.get("/", function(req, res){
@@ -128,7 +128,7 @@ app.post("/remove", function(req, res){
 app.post("/submit", (req, res) =>{
 
     // getting the data from the database
-    const rguId = 23
+    const rguId = noTag
     const name = req.body.name;
   const email = req.body.email;
   const building = req.body.building;

@@ -102,10 +102,10 @@ app.post("/remove", function(req, res){
             if (err) {
                 console.log("The record has not been deleted: " + remId);
                 console.log(err);
-                res.status(500).send('An error occurred while removing the record.');
+                res.status(500).render('pages/error_page', {errorMessage:'Appologies but you encountered the following error while inserting into the database', error:err});
             } else {
                 console.log(result);
-                res.status(200).send('Data deleted successfully.');
+                res.status(200).render('pages/record_added', {message:'Record added successfully press the home button to return to the home page'})
             }
         });
     });

@@ -36,5 +36,6 @@ $(document).ready(function() {
   //       // Handle the error response
   //     }
   //   });
+  // // the refresh is every 10 seconds
   // }, 10000);
 });

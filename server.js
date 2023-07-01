@@ -85,7 +85,7 @@ app.post("/remove", function(req, res){
     console.log(remId)
 
 
-    // request
+    
     
     
     //connect to the database
@@ -105,7 +105,7 @@ app.post("/remove", function(req, res){
                 res.status(500).render('pages/error_page', {errorMessage:'Appologies but you encountered the following error ', error:err});
             } else {
                 console.log(result);
-                res.status(200).render('pages/record_added', {message:'Record delete successfully press the home button to return to the home page'})
+                res.status(200).render('pages/record_added', {message:'Record deleted successfully press the home button to return to the home page'})
             }
         });
     });
@@ -159,6 +159,8 @@ app.post("/submit", (req, res) =>{
     request.input('marshal', sql.Bit, marshal);
     request.input('wheelchair', sql.Bit, wheelchair);
 
+    // the query that inserts the new user into the database
+    // the @var syntax reffers to the request.input created earlier
     request.query( 
         "INSERT INTO dbo.SignInOut (rgu_id, Name, Email, Building, Priority, is_present, Aid, Marshal, Wheelchair) VALUES(@rguId, @name, @email, @building, @priority, @isPresent, @aid, @marshal, @wheelchair)",
         function(err, result){
@@ -189,7 +191,8 @@ app.post("/submit", (req, res) =>{
 
 
 
-// this get function was used to test for the communication between the endpoint and the python code
+// this get function was used to test for the communication between the endpoint and the python code 
+// was created for testing purposes
 app.post("/arraysum", (req, res) => {
   
     // Retrieve array form post body
@@ -215,10 +218,10 @@ app.post("/arraysum", (req, res) => {
     
 });
 
-// post that recievews the nfc data from the python code
+// post that recievews the nfc data from the python code, the python sends the request to this function
 app.post("/read", (req, res) => {
     var nfc1 = req.body.id; // getting the NFC ID from the Python code
-    nfc = String(nfc1);
+    nfc = String(nfc1); // making the data from the nfc a string so it will be passed to the database and will less likely to cause any errors
     var data = "";
     var name = "";
 

@@ -31,7 +31,7 @@ var config = {
 
 let NFCdata = '';
 let trarray = [];
-let noTag = '89';
+let noTag = '';
 
 
 app.get("/", function(req, res){
@@ -105,7 +105,13 @@ app.post("/remove", function(req, res){
                 res.status(500).render('pages/error_page', {errorMessage:'Appologies but you encountered the following error ', error:err});
             } else {
                 console.log(result);
-                res.status(200).render('pages/record_added', {message:'Record deleted successfully press the home button to return to the home page'})
+                // SS added this if statement to create a way to inform the user of the record wansnt removed
+                if (result.rowsAffected == 0){
+                    res.status(500).render('pages/error_page', {errorMessage:'Appologies but you encountered the following error, it seems there is no record with that name.', error:err})
+
+                }
+                else
+                {res.status(200).render('pages/record_added', {message:'Record deleted successfully press the home button to return to the home page'})}
             }
         });
     });

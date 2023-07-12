@@ -405,10 +405,10 @@ app.post("/read", (req, res) => {
       }
       
       // Schedule the resetIsPresentField function to run every midnight
-      var midnight = new Date();
-      midnight.setHours(24, 0, 0, 0); // Set the time to midnight
-      var timeUntilMidnight = midnight.getTime() - Date.now(); // Calculate the time until midnight
-      setInterval(resetIsPresentField, timeUntilMidnight);
+    //   var midnight = new Date();
+    //   midnight.setHours(24, 0, 0, 0); // Set the time to midnight
+    //   var timeUntilMidnight = midnight.getTime() - Date.now(); // Calculate the time until midnight
+    //   setInterval(resetIsPresentField, timeUntilMidnight);
       
 
 

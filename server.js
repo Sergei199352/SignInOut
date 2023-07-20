@@ -23,20 +23,12 @@ var config = {
     database: 'registerDBS' 
 };
 
-
-
-
-
-
-
 let NFCdata = '';
 let trarray = [];
 let noTag = '';
 
-
 app.get("/", function(req, res){
      
-
     sql.connect(config, function (err) {
     
         if (err) console.log(err);
@@ -57,10 +49,6 @@ app.get("/", function(req, res){
         });
     });
 
-
-    
-
-
 });
 // renders the page that recieves the nfc data
 app.get("/load", function(req, res){
@@ -71,23 +59,15 @@ app.get("/new", function(req, res){
     res.render("pages/newUser",{noTag} )
 })
 
-
-
-
 //------------Post Functions-------------------
 
 //remove user post
-
 
 app.post("/remove", function(req, res){
     // get the data from the page
     const remId = req.body.remId
     console.log(remId)
 
-
-    
-    
-    
     //connect to the database
     sql.connect(config, function(err) {
         if (err) {
@@ -117,17 +97,7 @@ app.post("/remove", function(req, res){
     });
     
     
-
-
-
-
-
-
-
-
-
 })
-
 
 // new user post function
 
@@ -192,11 +162,6 @@ app.post("/submit", (req, res) =>{
 
 })
 
-
-
-
-
-
 // this get function was used to test for the communication between the endpoint and the python code 
 // was created for testing purposes
 app.post("/arraysum", (req, res) => {
@@ -231,8 +196,6 @@ app.post("/read", (req, res) => {
     var data = "";
     var name = "";
 
-    
-
     // connect to your database
     sql.connect(config, function (err) {
         if (err) {
@@ -254,8 +217,6 @@ app.post("/read", (req, res) => {
 
             }
             console.log(recordset.recordset) // geting the data displayed TESTING
-
-            
 
             if (recordset.recordset != 0){ // avoiding the empty array causing errors
             if (recordset && recordset.recordset.length > 0 && recordset.recordset[0].is_present == false) { // checking if the is present field is false
@@ -307,73 +268,6 @@ app.post("/read", (req, res) => {
     });
 });
 
-// --------------------- this code was meant to be ading users using a csv file followitn the same structure of the database it still requires a loop ----------
-// app.post('/upload', upload.single('file'), (req, res) => {
-//     // Check if a file was uploaded
-//     if (!req.file) {
-//       return res.status(400).send('No file uploaded.');
-//     }
-  
-//     const file = req.file;
-  
-//     // Check if the file has a valid filename
-//     if (!file.originalname.endsWith('.csv')) {
-//       return res.status(400).send('Invalid file.');
-//     }
-  
-//     // Read the data from the CSV file
-//     const results = [];
-//     fs.createReadStream(file.path)
-//       .pipe(csv())
-//       .on('data', (data) => results.push(data))
-//       .on('end', () => {
-//         // Remove the temporary uploaded file
-//         fs.unlinkSync(file.path);
-  
-//         // Do something with the data
-//         // TODO used the parsed data to insert it into a table
-//         console.log(results);
-//         console.log(Object.keys(results[0]));
-//         // sql.connect(config, function (err) {
-//         //     if (err) {
-//         //         console.log(err);
-//         //         return res.status(500).send("Internal Server Error");
-//         //     }
-
-//         // var swqlRes = results[0]
-//         // var req = new sql.Request()
-
-        
-//         // req.query("INSERT INTO dbo.SignInOut (rgu_id,Name, Email, Building, Priority ,is_present, Aid, Marshal, Wheelchair) VALUES   ('"+swqlRes.ID+"','"
-//         // +swqlRes.Name+"','"+swqlRes.Email+"','"+swqlRes.Building+"','"+swqlRes.Priority+"','"+swqlRes.is_present+"','"+swqlRes.Aid+"','"+swqlRes.Marshal+"','"+swqlRes.Wheelchair+"')", 
-//         // function(err,line){
-//         //     if (err){
-//         //         console.log(err)
-
-//         //     }
-//         //     console.log(line)
-//         // });
-
-
-
-
-//         // });
-//         // Remove the temporary uploaded file
-//       fs.unlink(file.path, (err) => {
-//         if (err) {
-//           console.log(err);
-//         }
-//         console.log('Temporary file deleted');
-//       });
-
-
-  
-//         res.status(200).send('File uploaded and processed successfully.');
-//       });
-//   });
-
-    // 24h reset 
-
     // function to refresh the records every midnight
     function resetIsPresentField() {
         // Get the current date and time
@@ -410,12 +304,6 @@ app.post("/read", (req, res) => {
     //   var timeUntilMidnight = midnight.getTime() - Date.now(); // Calculate the time until midnight
     //   setInterval(resetIsPresentField, timeUntilMidnight);
       
-
-
-
-
-
-
 console.log("the server now running")
   //adding some new info
 // Server listening to PORT 3000

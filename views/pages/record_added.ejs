@@ -9,10 +9,13 @@
     <title>Record added</title>
 </head>
 <body>
-
+<% if (message != 0){ %>
     <h1> Success</h1>
    <p> <%= message %> </p>
     <a href="/"><button>Home</button></a>
+    <% } else { %>
+    <p>No record has been received </p>
+  <% } %>
     
 </body>
 </html>

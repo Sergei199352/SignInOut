@@ -16,12 +16,12 @@
     <button id="toggleWheelchairTable">Toggle Wheelchair Operators Table</button>
     <a href="/new"><button>Add Users</button></a>
     <% if (records != 0) { %>
-      <div id="aiders">
+      <div id="aiders" class="tables">
         <h2>Aiders</h2>
-        <table>
+        <table id="aidTable" class="tables" >
           <thead>
             <tr>
-              <% const keys1 = Object.keys(records[0]).filter(key => key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
+              <% const keys1 = Object.keys(records[0]).filter(key => key !== 'rgu_id'  && key !== 'is_present' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
               for (let i = 0; i < keys1.length; i++) { %>
                 <th><%= keys1[i] %></th>
               <% } %>
@@ -34,7 +34,7 @@
               if (recordset['Aid']) { %>
                 <tr>
                   <% for (let key in recordset) {
-                    if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
+                    if (key !== 'rgu_id' && key !== 'is_present' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
                       <% if (key === 'Email') { %>
                         <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>"> <%= recordset[key] %> </a></td>
                       <% } else { %>
@@ -49,12 +49,12 @@
         </table>
       </div>
       
-      <div id="marshals">
+      <div id="marshals" >
         <h2>Marshals</h2>
-        <table>
+        <table id="fireTable" class="tables">
           <thead>
             <tr>
-              <% const keys2 = Object.keys(records[0]).filter(key => key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
+              <% const keys2 = Object.keys(records[0]).filter(key => key !== 'rgu_id'  && key !== 'is_present' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
               for (let i = 0; i < keys2.length; i++) { %>
                 <th><%= keys2[i] %></th>
               <% } %>
@@ -67,7 +67,7 @@
               if (recordset['Marshal']) { %>
                 <tr>
                   <% for (let key in recordset) {
-                    if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
+                    if (key !== 'rgu_id' && key !== 'is_present' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
                       <% if (key === 'Email') { %>
                         <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>"><%= recordset[key] %></a></td>
                       <% } else { %>
@@ -82,12 +82,12 @@
         </table>
       </div>
       
-      <div id="wheelchairs">
+      <div id="wheelchairs" >
         <h2>Wheelchairs</h2>
-        <table>
+        <table id="wheelTable" class="tables" >
           <thead>
             <tr>
-              <% const keys3 = Object.keys(records[0]).filter(key => key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
+              <% const keys3 = Object.keys(records[0]).filter(key => key !== 'rgu_id'  && key !== 'is_present' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair');
               for (let i = 0; i < keys3.length; i++) { %>
                 <th><%= keys3[i] %></th>
               <% } %>
@@ -100,7 +100,7 @@
               if (recordset['Wheelchair']) { %>
                 <tr>
                   <% for (let key in recordset) { %>
-                    <% if (key !== 'rgu_id' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
+                    <% if (key !== 'rgu_id' && key !== 'is_present' && key !== 'Aid' && key !== 'Marshal' && key !== 'Wheelchair') { %>
                       <% if (key === 'Email') { %>
                         <td><a href="https://teams.microsoft.com/l/chat/0/0?users=<%= recordset[key] %>"> <%= recordset[key] %></a></td>
                       <% } else { %>
@@ -121,7 +121,7 @@
       
       
   <% } else { %>
-    <p>No data posted yet.</p>
+    <p>No Data from database has been received </p>
   <% } %>
 </body>
 </html>

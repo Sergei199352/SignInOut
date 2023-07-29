@@ -6,6 +6,7 @@ var app = express();
 const multer = require('multer');
 const csv = require('csv-parser');
 const fs = require('fs');
+const { test } = require('node:test');
 const upload = multer({ dest: 'uploads/' });
 
 var nfc = "";
@@ -50,13 +51,17 @@ app.get("/", function(req, res){
     });
 
 });
-// renders the page that recieves the nfc data
-app.get("/load", function(req, res){
-    res.render("pages/upload")
-})
+
 
 app.get("/new", function(req, res){
     res.render("pages/newUser",{noTag} )
+})
+app.get("/success", function(req,res){
+    res.render("pages/record_added",{ message:"test Data"})
+})
+
+app.get("/error", function(req,res){
+    res.render("pages/error_page",{ errorMessage:"test Data", error:"test data"})
 })
 
 //------------Post Functions-------------------
@@ -274,7 +279,7 @@ app.post("/read", (req, res) => {
         var now = new Date();
         
         // Check if it's midnight
-        if (now.getHours() === 0 ) {
+        
           // Connect to the database
           sql.connect(config, function(err) {
             if (err) {
@@ -295,15 +300,15 @@ app.post("/read", (req, res) => {
               console.log("is_present field reset to false for all records.");
             });
           });
-        }
+        
       }
       
       // Schedule the resetIsPresentField function to run every midnight
-    //   var midnight = new Date();
-    //   midnight.setHours(24, 0, 0, 0); // Set the time to midnight
-    //   var timeUntilMidnight = midnight.getTime() - Date.now(); // Calculate the time until midnight
-    //   setInterval(resetIsPresentField, timeUntilMidnight);
-      
+      var midnight = new Date();
+      midnight.setHours(24, 0, 0, 0); // Set the time to midnight
+      var timeUntilMidnight = midnight.getTime() - Date.now(); // Calculate the time until midnight
+      setInterval(resetIsPresentField, timeUntilMidnight);
+      console.log(timeUntilMidnight)
 console.log("the server now running")
   //adding some new info
 // Server listening to PORT 3000

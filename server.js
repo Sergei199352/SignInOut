@@ -167,32 +167,7 @@ app.post("/submit", (req, res) =>{
 
 })
 
-// this get function was used to test for the communication between the endpoint and the python code 
-// was created for testing purposes
-app.post("/arraysum", (req, res) => {
-  
-    // Retrieve array form post body
-    var array = req.body.array;  
-    console.log(array);
-  
-    // Calculate sum
-    var sum = 0;
-    for (var i = 0; i < array.length; i++) {
-        if (isNaN(array[i])) {
-            continue;
-        }
-        sum += array[i];
-    }
-    console.log(sum);
-    
-    // Return json response
-    NFCdata = sum;
-    trarray = array;
-    eventEmitter.emit('data', NFCdata);
 
-    res.json({ result: sum });
-    
-});
 
 // post that recievews the nfc data from the python code, the python sends the request to this function
 app.post("/read", (req, res) => {
@@ -277,30 +252,30 @@ app.post("/read", (req, res) => {
     function resetIsPresentField() {
         // Get the current date and time
         var now = new Date();
-        
-        // Check if it's midnight
-        
+      
+        // Check if it's within the allowed time frame (between 11 pm and 6 am)
+        if (now.getHours() >= 23 || now.getHours() < 6) {
           // Connect to the database
-          sql.connect(config, function(err) {
+          sql.connect(config, function (err) {
             if (err) {
               console.log(err);
               return;
             }
-            
+      
             // Create a new request
             var request = new sql.Request();
-            
+      
             // Update all records in the table to set is_present to false
-            request.query("UPDATE dbo.SignInOut SET is_present = 'false'", function(err, result) {
+            request.query("UPDATE dbo.SignInOut SET is_present = 'false'", function (err, result) {
               if (err) {
                 console.log(err);
                 return;
               }
-              
+      
               console.log("is_present field reset to false for all records.");
             });
           });
-        
+        }
       }
       
       // Schedule the resetIsPresentField function to run every midnight

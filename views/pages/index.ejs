@@ -9,12 +9,22 @@
     <title>Emergency traind staff Members </title>
 </head>
 <body>
-    <h1>Emergency Staff Tables:</h1>
+  <header class="header">
+    <nav class="nav-block">
+        <a href="/" class="nav-button">
+            <img src="Rgu.PNG" alt="Button Icon" class="button-image">
+        </a>
+        <h1 class="navTitle">Emergency Staff Tables</h1>
+        <a href="/new"><button class="nav_buttons">Add Users</button></a>
+
+    </nav>
+</header>
     
+    <div class = "content_box">
     <button id="toggleMarshalsTable">Toggle Marshals Table</button>
     <button id="toggleAidersTable"> Toggle Aiders Table</button>
     <button id="toggleWheelchairTable">Toggle Wheelchair Operators Table</button>
-    <a href="/new"><button>Add Users</button></a>
+    
     <% if (records != 0) { %>
       <div id="aiders" class="tables">
         <h2>Aiders</h2>
@@ -123,5 +133,6 @@
   <% } else { %>
     <p>No Data from database has been received </p>
   <% } %>
+  </div>
 </body>
 </html>

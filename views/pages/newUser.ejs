@@ -9,8 +9,18 @@
           <title>Add User</title>
       </head>
 <body>
-  <a href="/"><button>Home</button></a>
-  <h1>Add new User Form</h1>
+  <header class="header">
+    <nav class="nav-block">
+        <a href="/" class="nav-button">
+            <img src="Rgu.PNG" alt="Button Icon" class="button-image">
+        </a>
+        <h1 class="navTitle">Add new User Form</h1>
+        
+
+    </nav>
+</header>
+  
+  
   <% if (noTag) { %>
     <h1><%= noTag %> </h1>
     <form method="POST" action="/submit">

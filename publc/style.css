@@ -14,6 +14,32 @@ body {
   h2 {
     color: #003C71;
   }
+  /* Header style */
+  .nav-block{
+    background-color: #712177;
+    max-width: 100%; /* Set the maximum width to match the page */
+    display: flex; /* Display children in a row */
+    align-items: center; /* Vertically center children */
+    
+}
+.nav_buttons{
+  background-color: #712177;
+  padding: 30px,
+
+}
+.nav_buttons:hover{
+  background-color: #551859;
+  
+}
+
+
+    
+    
+  
+  .navTitle{
+    color:white;
+    
+  }
   
   /* Table style */
   table {
@@ -135,7 +161,7 @@ button[type="submit"]:hover {
 }
 
 /* Add space all around the content */
-body {
+.content_box {
   margin: 50px;
 }
 

@@ -16,6 +16,7 @@ body {
   }
   /* Header style */
   .nav-block{
+    font-family: sans-serif;
     background-color: #712177;
     max-width: 100%; /* Set the maximum width to match the page */
     display: flex; /* Display children in a row */
@@ -23,6 +24,7 @@ body {
     
 }
 .nav_buttons{
+  font-family: sans-serif;
   background-color: #712177;
   padding: 30px,
 
@@ -38,6 +40,7 @@ body {
   
   .navTitle{
     color:white;
+    font-family: sans-serif;
     
   }
   
@@ -52,6 +55,7 @@ body {
   
   th,
   td {
+    font-family: sans-serif;
     padding: 10px;
     text-align: left;
     border: 1px solid #003C71;
@@ -70,6 +74,7 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     margin-bottom: 10px;
+    font-family: sans-serif;
   }
   
   button:hover {
@@ -111,7 +116,7 @@ label {
 p {
   font-size: x-large;
   color: #003C71;
-  font-family: math;
+  font-family: sans-serif;
   font-weight: bolder;
   text-decoration-line: underline;
 }
@@ -154,6 +159,7 @@ button[type="submit"] {
   padding: 10px 20px;
   cursor: pointer;
   margin-top: 10px;
+  
 }
 
 button[type="submit"]:hover {
